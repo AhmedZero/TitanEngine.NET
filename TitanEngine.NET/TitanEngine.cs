@@ -453,8 +453,6 @@ namespace TitanEngine.NET
             internal ushort Characteristics;
             internal uint NumberOfRvaAndSizes;
 
-            [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "??0PE32Struct@@QEAA@AEBU0@@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr cctor(__IntPtr __instance, __IntPtr __0);
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -910,8 +908,7 @@ namespace TitanEngine.NET
             internal ushort Characteristics;
             internal uint NumberOfRvaAndSizes;
 
-            [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "??0PE64Struct@@QEAA@AEBU0@@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr cctor(__IntPtr __instance, __IntPtr __0);
+        
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -1348,8 +1345,7 @@ namespace TitanEngine.NET
             internal __IntPtr APIName;
             internal __IntPtr DLLName;
 
-            [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "??0ImportEnumData@@QEAA@AEBU0@@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr cctor(__IntPtr __instance, __IntPtr __0);
+
         }
 
         public __IntPtr __Instance { get; protected set; }
