@@ -4848,7 +4848,7 @@ namespace TitanEngine.NET
                 ((__Internal*)__Instance)->cdi = value;
             }
         }
-
+#if WIN64
         public ulong R8
         {
             get
@@ -4952,7 +4952,7 @@ namespace TitanEngine.NET
                 ((__Internal*)__Instance)->r15 = value;
             }
         }
-
+#endif
         public ulong Cip
         {
             get
