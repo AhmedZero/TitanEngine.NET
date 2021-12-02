@@ -1542,9 +1542,6 @@ namespace TitanEngine.NET
             internal uint ContextSwitches;
             internal uint ThreadState;
             internal uint WaitReason;
-
-            [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "??0THREAD_ITEM_DATA@@QEAA@AEBU0@@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr cctor(__IntPtr __instance, __IntPtr __0);
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -1785,8 +1782,6 @@ namespace TitanEngine.NET
             internal fixed sbyte szLibraryPath[260];
             internal fixed sbyte szLibraryName[260];
 
-            [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "??0LIBRARY_ITEM_DATA@@QEAA@AEBU0@@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr cctor(__IntPtr __instance, __IntPtr __0);
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -1970,8 +1965,7 @@ namespace TitanEngine.NET
             internal fixed char szLibraryPath[260];
             internal fixed char szLibraryName[260];
 
-            [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "??0LIBRARY_ITEM_DATAW@@QEAA@AEBU0@@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr cctor(__IntPtr __instance, __IntPtr __0);
+  
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -2157,8 +2151,7 @@ namespace TitanEngine.NET
             internal __IntPtr ThreadStartAddress;
             internal __IntPtr ThreadLocalBase;
 
-            [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "??0PROCESS_ITEM_DATA@@QEAA@AEBU0@@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr cctor(__IntPtr __instance, __IntPtr __0);
+ 
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -2356,8 +2349,7 @@ namespace TitanEngine.NET
             internal uint ProcessId;
             internal __IntPtr hHandle;
 
-            [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "??0HandlerArray@@QEAA@AEBU0@@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr cctor(__IntPtr __instance, __IntPtr __0);
+
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -2484,8 +2476,7 @@ namespace TitanEngine.NET
             internal __IntPtr TitanResetPlugin;
             internal byte PluginDisabled;
 
-            [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "??0PluginInformation@@QEAA@AEBU0@@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr cctor(__IntPtr __instance, __IntPtr __0);
+     
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -2701,8 +2692,7 @@ namespace TitanEngine.NET
             internal fixed uint RelocationInfo[TEE_MAXIMUM_HOOK_RELOCS];
             internal int RelocationCount;
 
-            [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "??0HOOK_ENTRY@@QEAA@AEBU0@@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr cctor(__IntPtr __instance, __IntPtr _0);
+
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -3015,8 +3005,6 @@ namespace TitanEngine.NET
             internal byte ResourceData;
             internal byte SectionTable;
 
-            [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "??0FILE_STATUS_INFO@@QEAA@AEBU0@@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr cctor(__IntPtr __instance, __IntPtr __0);
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -3494,8 +3482,6 @@ namespace TitanEngine.NET
             internal uint OriginalCOMTableAddress;
             internal uint OriginalCOMTableSize;
 
-            [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "??0FILE_FIX_INFO@@QEAA@AEBU0@@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr cctor(__IntPtr __instance, __IntPtr __0);
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -4043,9 +4029,6 @@ namespace TitanEngine.NET
         {
             internal ulong Low;
             internal long High;
-
-            [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "??0_XmmRegister_t@@QEAA@AEBU0@@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr cctor(__IntPtr __instance, __IntPtr _0);
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -4164,9 +4147,6 @@ namespace TitanEngine.NET
         {
             internal global::TitanEngine.NET.XmmRegisterT.__Internal Low;
             internal global::TitanEngine.NET.XmmRegisterT.__Internal High;
-
-            [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "??0YmmRegister_t@@QEAA@AEBU0@@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr cctor(__IntPtr __instance, __IntPtr __0);
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -4291,8 +4271,6 @@ namespace TitanEngine.NET
             internal int st_value;
             internal int tag;
 
-            [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "??0x87FPURegister_t@@QEAA@AEBU0@@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr cctor(__IntPtr __instance, __IntPtr __0);
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -4435,8 +4413,7 @@ namespace TitanEngine.NET
             internal uint DataSelector;
             internal uint Cr0NpxState;
 
-            [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "??0x87FPU_t@@QEAA@AEBU0@@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr cctor(__IntPtr __instance, __IntPtr __0);
+
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -4683,8 +4660,7 @@ namespace TitanEngine.NET
             internal fixed byte YmmRegisters[256];
 #endif
 
-            [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "??0TITAN_ENGINE_CONTEXT_t@@QEAA@AEBU0@@Z", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr cctor(__IntPtr __instance, __IntPtr __0);
+
         }
 
         public __IntPtr __Instance { get; protected set; }
