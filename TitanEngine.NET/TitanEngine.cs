@@ -42,7 +42,7 @@ namespace TitanEngine.NET
 
     }
     public enum UE_ACCESS : byte
-    { 
+    {
         UE_ACCESS_READ = 0,
         UE_ACCESS_WRITE = 1,
         UE_ACCESS_ALL = 2,
@@ -452,7 +452,6 @@ namespace TitanEngine.NET
             internal ushort SubSystem;
             internal ushort Characteristics;
             internal uint NumberOfRvaAndSizes;
-
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -908,7 +907,6 @@ namespace TitanEngine.NET
             internal ushort Characteristics;
             internal uint NumberOfRvaAndSizes;
 
-        
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -1334,18 +1332,20 @@ namespace TitanEngine.NET
 
     public unsafe partial class ImportEnumData : IDisposable
     {
+#if WIN64
         [StructLayout(LayoutKind.Sequential, Size = 45, Pack = 1)]
+#else
+        [StructLayout(LayoutKind.Sequential, Size = 25, Pack = 1)]
+#endif
         public partial struct __Internal
         {
             internal byte NewDll;
             internal int NumberOfImports;
-            internal ulong ImageBase;
-            internal ulong BaseImportThunk;
-            internal ulong ImportThunk;
+            internal global::System.UIntPtr ImageBase;
+            internal global::System.UIntPtr BaseImportThunk;
+            internal global::System.UIntPtr ImportThunk;
             internal __IntPtr APIName;
             internal __IntPtr DLLName;
-
-
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -1456,7 +1456,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong ImageBase
+        public global::System.UIntPtr ImageBase
         {
             get
             {
@@ -1469,7 +1469,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong BaseImportThunk
+        public global::System.UIntPtr BaseImportThunk
         {
             get
             {
@@ -1482,7 +1482,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong ImportThunk
+        public global::System.UIntPtr ImportThunk
         {
             get
             {
@@ -1524,7 +1524,11 @@ namespace TitanEngine.NET
 
     public unsafe partial class THREAD_ITEM_DATA : IDisposable
     {
+#if WIN64
         [StructLayout(LayoutKind.Sequential, Size = 60, Pack = 1)]
+#else
+        [StructLayout(LayoutKind.Sequential, Size = 44, Pack = 1)]
+#endif
         public partial struct __Internal
         {
             internal __IntPtr hThread;
@@ -1768,7 +1772,11 @@ namespace TitanEngine.NET
 
     public unsafe partial class LIBRARY_ITEM_DATA : IDisposable
     {
+#if WIN64
         [StructLayout(LayoutKind.Sequential, Size = 552, Pack = 1)]
+#else
+        [StructLayout(LayoutKind.Sequential, Size = 536, Pack = 1)]
+#endif
         public partial struct __Internal
         {
             internal __IntPtr hFile;
@@ -1777,7 +1785,6 @@ namespace TitanEngine.NET
             internal __IntPtr hFileMappingView;
             internal fixed sbyte szLibraryPath[260];
             internal fixed sbyte szLibraryName[260];
-
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -1951,7 +1958,11 @@ namespace TitanEngine.NET
 
     public unsafe partial class LIBRARY_ITEM_DATAW : IDisposable
     {
+#if WIN64
         [StructLayout(LayoutKind.Sequential, Size = 1072, Pack = 1)]
+#else
+        [StructLayout(LayoutKind.Sequential, Size = 1056, Pack = 1)]
+#endif
         public partial struct __Internal
         {
             internal __IntPtr hFile;
@@ -1960,8 +1971,6 @@ namespace TitanEngine.NET
             internal __IntPtr hFileMappingView;
             internal fixed char szLibraryPath[260];
             internal fixed char szLibraryName[260];
-
-  
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -2135,7 +2144,11 @@ namespace TitanEngine.NET
 
     public unsafe partial class PROCESS_ITEM_DATA : IDisposable
     {
+#if WIN64
         [StructLayout(LayoutKind.Sequential, Size = 56, Pack = 1)]
+#else
+        [StructLayout(LayoutKind.Sequential, Size = 32, Pack = 1)]
+#endif
         public partial struct __Internal
         {
             internal __IntPtr hProcess;
@@ -2146,8 +2159,6 @@ namespace TitanEngine.NET
             internal __IntPtr BaseOfImage;
             internal __IntPtr ThreadStartAddress;
             internal __IntPtr ThreadLocalBase;
-
- 
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -2339,13 +2350,15 @@ namespace TitanEngine.NET
 
     public unsafe partial class HandlerArray : IDisposable
     {
+#if WIN64
         [StructLayout(LayoutKind.Sequential, Size = 12, Pack = 1)]
+#else
+        [StructLayout(LayoutKind.Sequential, Size = 8, Pack = 1)]
+#endif
         public partial struct __Internal
         {
             internal uint ProcessId;
             internal __IntPtr hHandle;
-
-
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -2459,7 +2472,11 @@ namespace TitanEngine.NET
 
     public unsafe partial class PluginInformation : IDisposable
     {
+#if WIN64
         [StructLayout(LayoutKind.Sequential, Size = 113, Pack = 1)]
+#else
+        [StructLayout(LayoutKind.Sequential, Size = 93, Pack = 1)]
+#endif
         public partial struct __Internal
         {
             internal fixed sbyte PluginName[64];
@@ -2471,8 +2488,6 @@ namespace TitanEngine.NET
             internal __IntPtr TitanReleasePlugin;
             internal __IntPtr TitanResetPlugin;
             internal byte PluginDisabled;
-
-     
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -2665,12 +2680,14 @@ namespace TitanEngine.NET
             }
         }
     }
+
     public unsafe partial class HOOK_ENTRY : IDisposable
     {
-        public const int TEE_MAXIMUM_HOOK_SIZE = 14;
-        public const int TEE_MAXIMUM_HOOK_RELOCS = 7;
-
+#if WIN64
         [StructLayout(LayoutKind.Sequential, Size = 104, Pack = 1)]
+#else
+        [StructLayout(LayoutKind.Sequential, Size = 88, Pack = 1)]
+#endif
         public partial struct __Internal
         {
             internal byte IATHook;
@@ -2678,17 +2695,15 @@ namespace TitanEngine.NET
             internal uint HookSize;
             internal __IntPtr HookAddress;
             internal __IntPtr RedirectionAddress;
-            internal fixed byte HookBytes[TEE_MAXIMUM_HOOK_SIZE];
-            internal fixed byte OriginalBytes[TEE_MAXIMUM_HOOK_SIZE];
+            internal fixed byte HookBytes[14];
+            internal fixed byte OriginalBytes[14];
             internal __IntPtr IATHookModuleBase;
             internal uint IATHookNameHash;
             internal byte HookIsEnabled;
             internal byte HookIsRemote;
             internal __IntPtr PatchedEntry;
-            internal fixed uint RelocationInfo[TEE_MAXIMUM_HOOK_RELOCS];
+            internal fixed uint RelocationInfo[7];
             internal int RelocationCount;
-
-
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -3000,7 +3015,6 @@ namespace TitanEngine.NET
             internal byte ResourceTable;
             internal byte ResourceData;
             internal byte SectionTable;
-
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -3477,7 +3491,6 @@ namespace TitanEngine.NET
             internal byte DontFixCOM;
             internal uint OriginalCOMTableAddress;
             internal uint OriginalCOMTableSize;
-
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -4025,6 +4038,7 @@ namespace TitanEngine.NET
         {
             internal ulong Low;
             internal long High;
+
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -4143,6 +4157,7 @@ namespace TitanEngine.NET
         {
             internal global::TitanEngine.NET.XmmRegisterT.__Internal Low;
             internal global::TitanEngine.NET.XmmRegisterT.__Internal High;
+       
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -4409,7 +4424,6 @@ namespace TitanEngine.NET
             internal uint DataSelector;
             internal uint Cr0NpxState;
 
-
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -4602,61 +4616,56 @@ namespace TitanEngine.NET
     public unsafe partial class TITAN_ENGINE_CONTEXT_t : IDisposable
     {
 #if WIN64
-
         [StructLayout(LayoutKind.Sequential, Size = 1088, Pack = 1)]
 #else
-
-        [StructLayout(LayoutKind.Sequential, Size = 640, Pack = 1)]
+        [StructLayout(LayoutKind.Sequential, Size = 576, Pack = 1)]
 #endif
-
         public partial struct __Internal
         {
-            internal ulong cax;
-            internal ulong ccx;
-            internal ulong cdx;
-            internal ulong cbx;
-            internal ulong csp;
-            internal ulong cbp;
-            internal ulong csi;
-            internal ulong cdi;
+            internal global::System.UIntPtr cax;
+            internal global::System.UIntPtr ccx;
+            internal global::System.UIntPtr cdx;
+            internal global::System.UIntPtr cbx;
+            internal global::System.UIntPtr csp;
+            internal global::System.UIntPtr cbp;
+            internal global::System.UIntPtr csi;
+            internal global::System.UIntPtr cdi;
 #if WIN64
-            internal ulong r8;
-            internal ulong r9;
-            internal ulong r10;
-            internal ulong r11;
-            internal ulong r12;
-            internal ulong r13;
-            internal ulong r14;
-            internal ulong r15;
+            internal global::System.UIntPtr r8;
+            internal global::System.UIntPtr r9;
+            internal global::System.UIntPtr r10;
+            internal global::System.UIntPtr r11;
+            internal global::System.UIntPtr r12;
+            internal global::System.UIntPtr r13;
+            internal global::System.UIntPtr r14;
+            internal global::System.UIntPtr r15;
 #endif
-            internal ulong cip;
-            internal ulong eflags;
+            internal global::System.UIntPtr cip;
+            internal global::System.UIntPtr eflags;
             internal ushort gs;
             internal ushort fs;
             internal ushort es;
             internal ushort ds;
             internal ushort cs;
             internal ushort ss;
-            internal ulong dr0;
-            internal ulong dr1;
-            internal ulong dr2;
-            internal ulong dr3;
-            internal ulong dr6;
-            internal ulong dr7;
+            internal global::System.UIntPtr dr0;
+            internal global::System.UIntPtr dr1;
+            internal global::System.UIntPtr dr2;
+            internal global::System.UIntPtr dr3;
+            internal global::System.UIntPtr dr6;
+            internal global::System.UIntPtr dr7;
             internal fixed byte RegisterArea[80];
             internal global::TitanEngine.NET.X87FPU_t.__Internal x87fpu;
             internal uint MxCsr;
             internal fixed byte XmmRegistersPadding[6];
-#if WIN64
 
+#if WIN64
             internal fixed byte XmmRegisters[256];
             internal fixed byte YmmRegisters[512];
 #else
             internal fixed byte XmmRegisters[128];
             internal fixed byte YmmRegisters[256];
 #endif
-
-
         }
 
         public __IntPtr __Instance { get; protected set; }
@@ -4741,7 +4750,7 @@ namespace TitanEngine.NET
             __Instance = IntPtr.Zero;
         }
 
-        public ulong Cax
+        public global::System.UIntPtr Cax
         {
             get
             {
@@ -4754,7 +4763,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong Ccx
+        public global::System.UIntPtr Ccx
         {
             get
             {
@@ -4767,7 +4776,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong Cdx
+        public global::System.UIntPtr Cdx
         {
             get
             {
@@ -4780,7 +4789,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong Cbx
+        public global::System.UIntPtr Cbx
         {
             get
             {
@@ -4793,7 +4802,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong Csp
+        public global::System.UIntPtr Csp
         {
             get
             {
@@ -4806,7 +4815,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong Cbp
+        public global::System.UIntPtr Cbp
         {
             get
             {
@@ -4819,7 +4828,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong Csi
+        public global::System.UIntPtr Csi
         {
             get
             {
@@ -4832,7 +4841,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong Cdi
+        public global::System.UIntPtr Cdi
         {
             get
             {
@@ -4845,7 +4854,7 @@ namespace TitanEngine.NET
             }
         }
 #if WIN64
-        public ulong R8
+        public global::System.UIntPtr R8
         {
             get
             {
@@ -4858,7 +4867,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong R9
+        public global::System.UIntPtr R9
         {
             get
             {
@@ -4871,7 +4880,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong R10
+        public global::System.UIntPtr R10
         {
             get
             {
@@ -4884,7 +4893,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong R11
+        public global::System.UIntPtr R11
         {
             get
             {
@@ -4897,7 +4906,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong R12
+        public global::System.UIntPtr R12
         {
             get
             {
@@ -4910,7 +4919,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong R13
+        public global::System.UIntPtr R13
         {
             get
             {
@@ -4923,7 +4932,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong R14
+        public global::System.UIntPtr R14
         {
             get
             {
@@ -4936,7 +4945,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong R15
+        public global::System.UIntPtr R15
         {
             get
             {
@@ -4949,7 +4958,9 @@ namespace TitanEngine.NET
             }
         }
 #endif
-        public ulong Cip
+
+
+        public global::System.UIntPtr Cip
         {
             get
             {
@@ -4962,7 +4973,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong Eflags
+        public global::System.UIntPtr Eflags
         {
             get
             {
@@ -5053,7 +5064,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong Dr0
+        public global::System.UIntPtr Dr0
         {
             get
             {
@@ -5066,7 +5077,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong Dr1
+        public global::System.UIntPtr Dr1
         {
             get
             {
@@ -5079,7 +5090,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong Dr2
+        public global::System.UIntPtr Dr2
         {
             get
             {
@@ -5092,7 +5103,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong Dr3
+        public global::System.UIntPtr Dr3
         {
             get
             {
@@ -5105,7 +5116,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong Dr6
+        public global::System.UIntPtr Dr6
         {
             get
             {
@@ -5118,7 +5129,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public ulong Dr7
+        public global::System.UIntPtr Dr7
         {
             get
             {
@@ -5176,6 +5187,7 @@ namespace TitanEngine.NET
             }
         }
 
+#if WIN64
         public global::TitanEngine.NET.XmmRegisterT[] XmmRegisters
         {
             get
@@ -5201,7 +5213,6 @@ namespace TitanEngine.NET
                 }
             }
         }
-
         public global::TitanEngine.NET.YmmRegister_t[] YmmRegisters
         {
             get
@@ -5227,6 +5238,61 @@ namespace TitanEngine.NET
                 }
             }
         }
+
+#else
+        public global::TitanEngine.NET.XmmRegisterT[] XmmRegisters
+        {
+            get
+            {
+                global::TitanEngine.NET.XmmRegisterT[] __value = null;
+                if (((__Internal*)__Instance)->XmmRegisters != null)
+                {
+                    __value = new global::TitanEngine.NET.XmmRegisterT[8];
+                    for (int i = 0; i < 8; i++)
+                        __value[i] = global::TitanEngine.NET.XmmRegisterT.__GetOrCreateInstance((IntPtr)((global::TitanEngine.NET.XmmRegisterT.__Internal*)&(((__Internal*)__Instance)->XmmRegisters[i * sizeof(global::TitanEngine.NET.XmmRegisterT.__Internal)])), true, true);
+                }
+                return __value;
+            }
+
+            set
+            {
+                if (value != null)
+                {
+                    if (value.Length != 8)
+                        throw new ArgumentOutOfRangeException("value", "The dimensions of the provided array don't match the required size.");
+                    for (int i = 0; i < 8; i++)
+                        *(global::TitanEngine.NET.XmmRegisterT.__Internal*) &((__Internal*)__Instance)->XmmRegisters[i * sizeof(global::TitanEngine.NET.XmmRegisterT.__Internal)] = *(global::TitanEngine.NET.XmmRegisterT.__Internal*)value[i].__Instance;
+                }
+            }
+        }
+
+        public global::TitanEngine.NET.YmmRegister_t[] YmmRegisters
+        {
+            get
+            {
+                global::TitanEngine.NET.YmmRegister_t[] __value = null;
+                if (((__Internal*)__Instance)->YmmRegisters != null)
+                {
+                    __value = new global::TitanEngine.NET.YmmRegister_t[8];
+                    for (int i = 0; i < 8; i++)
+                        __value[i] = global::TitanEngine.NET.YmmRegister_t.__GetOrCreateInstance((IntPtr)((global::TitanEngine.NET.YmmRegister_t.__Internal*)&(((__Internal*)__Instance)->YmmRegisters[i * sizeof(global::TitanEngine.NET.YmmRegister_t.__Internal)])), true, true);
+                }
+                return __value;
+            }
+
+            set
+            {
+                if (value != null)
+                {
+                    if (value.Length != 8)
+                        throw new ArgumentOutOfRangeException("value", "The dimensions of the provided array don't match the required size.");
+                    for (int i = 0; i < 8; i++)
+                        *(global::TitanEngine.NET.YmmRegister_t.__Internal*) &((__Internal*)__Instance)->YmmRegisters[i * sizeof(global::TitanEngine.NET.YmmRegister_t.__Internal)] = *(global::TitanEngine.NET.YmmRegister_t.__Internal*)value[i].__Instance;
+                }
+            }
+        }
+    }
+#endif
     }
 
     public unsafe partial class TitanEngine
@@ -5235,35 +5301,35 @@ namespace TitanEngine.NET
         {
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "DumpProcess", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool DumpProcess(__IntPtr hProcess, __IntPtr ImageBase, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDumpFileName, ulong EntryPoint);
+            internal static extern bool DumpProcess(__IntPtr hProcess, __IntPtr ImageBase, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDumpFileName, global::System.UIntPtr EntryPoint);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "DumpProcessW", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool DumpProcessW(__IntPtr hProcess, __IntPtr ImageBase, [MarshalAs(UnmanagedType.LPWStr)] string szDumpFileName, ulong EntryPoint);
+            internal static extern bool DumpProcessW(__IntPtr hProcess, __IntPtr ImageBase, [MarshalAs(UnmanagedType.LPWStr)] string szDumpFileName, global::System.UIntPtr EntryPoint);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "DumpProcessEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool DumpProcessEx(uint ProcessId, __IntPtr ImageBase, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDumpFileName, ulong EntryPoint);
+            internal static extern bool DumpProcessEx(uint ProcessId, __IntPtr ImageBase, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDumpFileName, global::System.UIntPtr EntryPoint);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "DumpProcessExW", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool DumpProcessExW(uint ProcessId, __IntPtr ImageBase, [MarshalAs(UnmanagedType.LPWStr)] string szDumpFileName, ulong EntryPoint);
+            internal static extern bool DumpProcessExW(uint ProcessId, __IntPtr ImageBase, [MarshalAs(UnmanagedType.LPWStr)] string szDumpFileName, global::System.UIntPtr EntryPoint);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "DumpMemory", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool DumpMemory(__IntPtr hProcess, __IntPtr MemoryStart, ulong MemorySize, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDumpFileName);
+            internal static extern bool DumpMemory(__IntPtr hProcess, __IntPtr MemoryStart, global::System.UIntPtr MemorySize, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDumpFileName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "DumpMemoryW", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool DumpMemoryW(__IntPtr hProcess, __IntPtr MemoryStart, ulong MemorySize, [MarshalAs(UnmanagedType.LPWStr)] string szDumpFileName);
+            internal static extern bool DumpMemoryW(__IntPtr hProcess, __IntPtr MemoryStart, global::System.UIntPtr MemorySize, [MarshalAs(UnmanagedType.LPWStr)] string szDumpFileName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "DumpMemoryEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool DumpMemoryEx(uint ProcessId, __IntPtr MemoryStart, ulong MemorySize, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDumpFileName);
+            internal static extern bool DumpMemoryEx(uint ProcessId, __IntPtr MemoryStart, global::System.UIntPtr MemorySize, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDumpFileName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "DumpMemoryExW", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool DumpMemoryExW(uint ProcessId, __IntPtr MemoryStart, ulong MemorySize, [MarshalAs(UnmanagedType.LPWStr)] string szDumpFileName);
+            internal static extern bool DumpMemoryExW(uint ProcessId, __IntPtr MemoryStart, global::System.UIntPtr MemorySize, [MarshalAs(UnmanagedType.LPWStr)] string szDumpFileName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "DumpRegions", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -5418,17 +5484,17 @@ namespace TitanEngine.NET
             internal static extern bool DeleteLastSectionExW([MarshalAs(UnmanagedType.LPWStr)] string szFileName, uint NumberOfSections);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "GetPE32DataFromMappedFile", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong GetPE32DataFromMappedFile(ulong FileMapVA, uint WhichSection, uint WhichData);
+            internal static extern global::System.UIntPtr GetPE32DataFromMappedFile(global::System.UIntPtr FileMapVA, uint WhichSection, uint WhichData);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "GetPE32Data", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong GetPE32Data([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName, uint WhichSection, uint WhichData);
+            internal static extern global::System.UIntPtr GetPE32Data([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName, uint WhichSection, uint WhichData);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "GetPE32DataW", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong GetPE32DataW([MarshalAs(UnmanagedType.LPWStr)] string szFileName, uint WhichSection, uint WhichData);
+            internal static extern global::System.UIntPtr GetPE32DataW([MarshalAs(UnmanagedType.LPWStr)] string szFileName, uint WhichSection, uint WhichData);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "GetPE32DataFromMappedFileEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool GetPE32DataFromMappedFileEx(ulong FileMapVA, __IntPtr DataStorage);
+            internal static extern bool GetPE32DataFromMappedFileEx(global::System.UIntPtr FileMapVA, __IntPtr DataStorage);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "GetPE32DataEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -5440,19 +5506,19 @@ namespace TitanEngine.NET
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "SetPE32DataForMappedFile", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool SetPE32DataForMappedFile(ulong FileMapVA, uint WhichSection, uint WhichData, ulong NewDataValue);
+            internal static extern bool SetPE32DataForMappedFile(global::System.UIntPtr FileMapVA, uint WhichSection, uint WhichData, global::System.UIntPtr NewDataValue);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "SetPE32Data", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool SetPE32Data([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName, uint WhichSection, uint WhichData, ulong NewDataValue);
+            internal static extern bool SetPE32Data([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName, uint WhichSection, uint WhichData, global::System.UIntPtr NewDataValue);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "SetPE32DataW", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool SetPE32DataW([MarshalAs(UnmanagedType.LPWStr)] string szFileName, uint WhichSection, uint WhichData, ulong NewDataValue);
+            internal static extern bool SetPE32DataW([MarshalAs(UnmanagedType.LPWStr)] string szFileName, uint WhichSection, uint WhichData, global::System.UIntPtr NewDataValue);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "SetPE32DataForMappedFileEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool SetPE32DataForMappedFileEx(ulong FileMapVA, __IntPtr DataStorage);
+            internal static extern bool SetPE32DataForMappedFileEx(global::System.UIntPtr FileMapVA, __IntPtr DataStorage);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "SetPE32DataEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -5463,27 +5529,27 @@ namespace TitanEngine.NET
             internal static extern bool SetPE32DataExW([MarshalAs(UnmanagedType.LPWStr)] string szFileName, __IntPtr DataStorage);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "GetPE32SectionNumberFromVA", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int GetPE32SectionNumberFromVA(ulong FileMapVA, ulong AddressToConvert);
+            internal static extern int GetPE32SectionNumberFromVA(global::System.UIntPtr FileMapVA, global::System.UIntPtr AddressToConvert);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ConvertVAtoFileOffset", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ConvertVAtoFileOffset(ulong FileMapVA, ulong AddressToConvert, bool ReturnType);
+            internal static extern global::System.UIntPtr ConvertVAtoFileOffset(global::System.UIntPtr FileMapVA, global::System.UIntPtr AddressToConvert, bool ReturnType);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ConvertVAtoFileOffsetEx", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ConvertVAtoFileOffsetEx(ulong FileMapVA, uint FileSize, ulong ImageBase, ulong AddressToConvert, bool AddressIsRVA, bool ReturnType);
+            internal static extern global::System.UIntPtr ConvertVAtoFileOffsetEx(global::System.UIntPtr FileMapVA, uint FileSize, global::System.UIntPtr ImageBase, global::System.UIntPtr AddressToConvert, bool AddressIsRVA, bool ReturnType);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ConvertFileOffsetToVA", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ConvertFileOffsetToVA(ulong FileMapVA, ulong AddressToConvert, bool ReturnType);
+            internal static extern global::System.UIntPtr ConvertFileOffsetToVA(global::System.UIntPtr FileMapVA, global::System.UIntPtr AddressToConvert, bool ReturnType);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ConvertFileOffsetToVAEx", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ConvertFileOffsetToVAEx(ulong FileMapVA, uint FileSize, ulong ImageBase, ulong AddressToConvert, bool ReturnType);
+            internal static extern global::System.UIntPtr ConvertFileOffsetToVAEx(global::System.UIntPtr FileMapVA, uint FileSize, global::System.UIntPtr ImageBase, global::System.UIntPtr AddressToConvert, bool ReturnType);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "MemoryReadSafe", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool MemoryReadSafe(__IntPtr hProcess, __IntPtr lpBaseAddress, __IntPtr lpBuffer, ulong nSize, ulong* lpNumberOfBytesRead);
+            internal static extern bool MemoryReadSafe(__IntPtr hProcess, __IntPtr lpBaseAddress, __IntPtr lpBuffer, global::System.UIntPtr nSize, global::System.UIntPtr* lpNumberOfBytesRead);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "MemoryWriteSafe", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool MemoryWriteSafe(__IntPtr hProcess, __IntPtr lpBaseAddress, __IntPtr lpBuffer, ulong nSize, ulong* lpNumberOfBytesWritten);
+            internal static extern bool MemoryWriteSafe(__IntPtr hProcess, __IntPtr lpBaseAddress, __IntPtr lpBuffer, global::System.UIntPtr nSize, global::System.UIntPtr* lpNumberOfBytesWritten);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "FixHeaderCheckSum", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -5494,7 +5560,7 @@ namespace TitanEngine.NET
             internal static extern bool FixHeaderCheckSumW([MarshalAs(UnmanagedType.LPWStr)] string szFileName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "RealignPE", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int RealignPE(ulong FileMapVA, uint FileSize, uint RealingMode);
+            internal static extern int RealignPE(global::System.UIntPtr FileMapVA, uint FileSize, uint RealingMode);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "RealignPEEx", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern int RealignPEEx([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName, uint RealingFileSize, uint ForcedFileAlignment);
@@ -5528,11 +5594,11 @@ namespace TitanEngine.NET
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "IsFileDLL", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool IsFileDLL([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName, ulong FileMapVA);
+            internal static extern bool IsFileDLL([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName, global::System.UIntPtr FileMapVA);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "IsFileDLLW", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool IsFileDLLW([MarshalAs(UnmanagedType.LPWStr)] string szFileName, ulong FileMapVA);
+            internal static extern bool IsFileDLLW([MarshalAs(UnmanagedType.LPWStr)] string szFileName, global::System.UIntPtr FileMapVA);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "GetPEBLocation", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr GetPEBLocation(__IntPtr hProcess);
@@ -5558,17 +5624,17 @@ namespace TitanEngine.NET
             internal static extern void RelocaterCleanup();
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "RelocaterInit", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void RelocaterInit(uint MemorySize, ulong OldImageBase, ulong NewImageBase);
+            internal static extern void RelocaterInit(uint MemorySize, global::System.UIntPtr OldImageBase, global::System.UIntPtr NewImageBase);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "RelocaterAddNewRelocation", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void RelocaterAddNewRelocation(__IntPtr hProcess, ulong RelocateAddress, uint RelocateState);
+            internal static extern void RelocaterAddNewRelocation(__IntPtr hProcess, global::System.UIntPtr RelocateAddress, uint RelocateState);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "RelocaterEstimatedSize", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern int RelocaterEstimatedSize();
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "RelocaterExportRelocation", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool RelocaterExportRelocation(ulong StorePlace, uint StorePlaceRVA, ulong FileMapVA);
+            internal static extern bool RelocaterExportRelocation(global::System.UIntPtr StorePlace, uint StorePlaceRVA, global::System.UIntPtr FileMapVA);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "RelocaterExportRelocationEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -5580,39 +5646,39 @@ namespace TitanEngine.NET
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "RelocaterGrabRelocationTable", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool RelocaterGrabRelocationTable(__IntPtr hProcess, ulong MemoryStart, uint MemorySize);
+            internal static extern bool RelocaterGrabRelocationTable(__IntPtr hProcess, global::System.UIntPtr MemoryStart, uint MemorySize);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "RelocaterGrabRelocationTableEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool RelocaterGrabRelocationTableEx(__IntPtr hProcess, ulong MemoryStart, ulong MemorySize, uint NtSizeOfImage);
+            internal static extern bool RelocaterGrabRelocationTableEx(__IntPtr hProcess, global::System.UIntPtr MemoryStart, global::System.UIntPtr MemorySize, uint NtSizeOfImage);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "RelocaterMakeSnapshot", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool RelocaterMakeSnapshot(__IntPtr hProcess, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szSaveFileName, __IntPtr MemoryStart, ulong MemorySize);
+            internal static extern bool RelocaterMakeSnapshot(__IntPtr hProcess, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szSaveFileName, __IntPtr MemoryStart, global::System.UIntPtr MemorySize);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "RelocaterMakeSnapshotW", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool RelocaterMakeSnapshotW(__IntPtr hProcess, [MarshalAs(UnmanagedType.LPWStr)] string szSaveFileName, __IntPtr MemoryStart, ulong MemorySize);
+            internal static extern bool RelocaterMakeSnapshotW(__IntPtr hProcess, [MarshalAs(UnmanagedType.LPWStr)] string szSaveFileName, __IntPtr MemoryStart, global::System.UIntPtr MemorySize);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "RelocaterCompareTwoSnapshots", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool RelocaterCompareTwoSnapshots(__IntPtr hProcess, ulong LoadedImageBase, ulong NtSizeOfImage, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDumpFile1, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDumpFile2, ulong MemStart);
+            internal static extern bool RelocaterCompareTwoSnapshots(__IntPtr hProcess, global::System.UIntPtr LoadedImageBase, global::System.UIntPtr NtSizeOfImage, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDumpFile1, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDumpFile2, global::System.UIntPtr MemStart);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "RelocaterCompareTwoSnapshotsW", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool RelocaterCompareTwoSnapshotsW(__IntPtr hProcess, ulong LoadedImageBase, ulong NtSizeOfImage, [MarshalAs(UnmanagedType.LPWStr)] string szDumpFile1, [MarshalAs(UnmanagedType.LPWStr)] string szDumpFile2, ulong MemStart);
+            internal static extern bool RelocaterCompareTwoSnapshotsW(__IntPtr hProcess, global::System.UIntPtr LoadedImageBase, global::System.UIntPtr NtSizeOfImage, [MarshalAs(UnmanagedType.LPWStr)] string szDumpFile1, [MarshalAs(UnmanagedType.LPWStr)] string szDumpFile2, global::System.UIntPtr MemStart);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "RelocaterChangeFileBase", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool RelocaterChangeFileBase([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName, ulong NewImageBase);
+            internal static extern bool RelocaterChangeFileBase([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName, global::System.UIntPtr NewImageBase);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "RelocaterChangeFileBaseW", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool RelocaterChangeFileBaseW([MarshalAs(UnmanagedType.LPWStr)] string szFileName, ulong NewImageBase);
+            internal static extern bool RelocaterChangeFileBaseW([MarshalAs(UnmanagedType.LPWStr)] string szFileName, global::System.UIntPtr NewImageBase);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "RelocaterRelocateMemoryBlock", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool RelocaterRelocateMemoryBlock(ulong FileMapVA, ulong MemoryLocation, __IntPtr RelocateMemory, uint RelocateMemorySize, ulong CurrentLoadedBase, ulong RelocateBase);
+            internal static extern bool RelocaterRelocateMemoryBlock(global::System.UIntPtr FileMapVA, global::System.UIntPtr MemoryLocation, __IntPtr RelocateMemory, uint RelocateMemorySize, global::System.UIntPtr CurrentLoadedBase, global::System.UIntPtr RelocateBase);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "RelocaterWipeRelocationTable", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -5623,10 +5689,10 @@ namespace TitanEngine.NET
             internal static extern bool RelocaterWipeRelocationTableW([MarshalAs(UnmanagedType.LPWStr)] string szFileName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ResourcerLoadFileForResourceUse", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ResourcerLoadFileForResourceUse([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName);
+            internal static extern global::System.UIntPtr ResourcerLoadFileForResourceUse([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ResourcerLoadFileForResourceUseW", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ResourcerLoadFileForResourceUseW([MarshalAs(UnmanagedType.LPWStr)] string szFileName);
+            internal static extern global::System.UIntPtr ResourcerLoadFileForResourceUseW([MarshalAs(UnmanagedType.LPWStr)] string szFileName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ResourcerFreeLoadedFile", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -5642,15 +5708,15 @@ namespace TitanEngine.NET
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ResourcerFindResource", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool ResourcerFindResource([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szResourceType, uint ResourceType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szResourceName, uint ResourceName, uint ResourceLanguage, ulong* pResourceData, uint* pResourceSize);
+            internal static extern bool ResourcerFindResource([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szResourceType, uint ResourceType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szResourceName, uint ResourceName, uint ResourceLanguage, global::System.UIntPtr* pResourceData, uint* pResourceSize);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ResourcerFindResourceW", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool ResourcerFindResourceW([MarshalAs(UnmanagedType.LPWStr)] string szFileName, [MarshalAs(UnmanagedType.LPWStr)] string szResourceType, uint ResourceType, [MarshalAs(UnmanagedType.LPWStr)] string szResourceName, uint ResourceName, uint ResourceLanguage, ulong* pResourceData, uint* pResourceSize);
+            internal static extern bool ResourcerFindResourceW([MarshalAs(UnmanagedType.LPWStr)] string szFileName, [MarshalAs(UnmanagedType.LPWStr)] string szResourceType, uint ResourceType, [MarshalAs(UnmanagedType.LPWStr)] string szResourceName, uint ResourceName, uint ResourceLanguage, global::System.UIntPtr* pResourceData, uint* pResourceSize);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ResourcerFindResourceEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool ResourcerFindResourceEx(ulong FileMapVA, uint FileSize, [MarshalAs(UnmanagedType.LPWStr)] string szResourceType, uint ResourceType, [MarshalAs(UnmanagedType.LPWStr)] string szResourceName, uint ResourceName, uint ResourceLanguage, ulong* pResourceData, uint* pResourceSize);
+            internal static extern bool ResourcerFindResourceEx(global::System.UIntPtr FileMapVA, uint FileSize, [MarshalAs(UnmanagedType.LPWStr)] string szResourceType, uint ResourceType, [MarshalAs(UnmanagedType.LPWStr)] string szResourceName, uint ResourceName, uint ResourceLanguage, global::System.UIntPtr* pResourceData, uint* pResourceSize);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ResourcerEnumerateResource", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern void ResourcerEnumerateResource([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName, __IntPtr CallBack);
@@ -5659,7 +5725,7 @@ namespace TitanEngine.NET
             internal static extern void ResourcerEnumerateResourceW([MarshalAs(UnmanagedType.LPWStr)] string szFileName, __IntPtr CallBack);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ResourcerEnumerateResourceEx", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void ResourcerEnumerateResourceEx(ulong FileMapVA, uint FileSize, __IntPtr CallBack);
+            internal static extern void ResourcerEnumerateResourceEx(global::System.UIntPtr FileMapVA, uint FileSize, __IntPtr CallBack);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ThreaderImportRunningThreadData", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -5700,14 +5766,14 @@ namespace TitanEngine.NET
             internal static extern bool ThreaderResumeProcess();
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ThreaderCreateRemoteThread", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ThreaderCreateRemoteThread(ulong ThreadStartAddress, bool AutoCloseTheHandle, __IntPtr ThreadPassParameter, uint* ThreadId);
+            internal static extern global::System.UIntPtr ThreaderCreateRemoteThread(global::System.UIntPtr ThreadStartAddress, bool AutoCloseTheHandle, __IntPtr ThreadPassParameter, uint* ThreadId);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ThreaderInjectAndExecuteCode", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
             internal static extern bool ThreaderInjectAndExecuteCode(__IntPtr InjectCode, uint StartDelta, uint InjectSize);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ThreaderCreateRemoteThreadEx", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ThreaderCreateRemoteThreadEx(__IntPtr hProcess, ulong ThreadStartAddress, bool AutoCloseTheHandle, __IntPtr ThreadPassParameter, uint* ThreadId);
+            internal static extern global::System.UIntPtr ThreaderCreateRemoteThreadEx(__IntPtr hProcess, global::System.UIntPtr ThreadStartAddress, bool AutoCloseTheHandle, __IntPtr ThreadPassParameter, uint* ThreadId);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ThreaderInjectAndExecuteCodeEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -5733,14 +5799,14 @@ namespace TitanEngine.NET
             internal static extern bool ThreaderExecuteOnlyInjectedThreads();
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ThreaderGetOpenHandleForThread", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ThreaderGetOpenHandleForThread(uint ThreadId);
+            internal static extern global::System.UIntPtr ThreaderGetOpenHandleForThread(uint ThreadId);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ThreaderIsExceptionInMainThread", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
             internal static extern bool ThreaderIsExceptionInMainThread();
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "StaticDisassembleEx", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr StaticDisassembleEx(ulong DisassmStart, __IntPtr DisassmAddress);
+            internal static extern __IntPtr StaticDisassembleEx(global::System.UIntPtr DisassmStart, __IntPtr DisassmAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "StaticDisassemble", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr StaticDisassemble(__IntPtr DisassmAddress);
@@ -5793,27 +5859,27 @@ namespace TitanEngine.NET
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "IsBPXEnabled", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool IsBPXEnabled(ulong bpxAddress);
+            internal static extern bool IsBPXEnabled(global::System.UIntPtr bpxAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "EnableBPX", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool EnableBPX(ulong bpxAddress);
+            internal static extern bool EnableBPX(global::System.UIntPtr bpxAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "DisableBPX", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool DisableBPX(ulong bpxAddress);
+            internal static extern bool DisableBPX(global::System.UIntPtr bpxAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "SetBPX", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool SetBPX(ulong bpxAddress, uint bpxType, __IntPtr bpxCallBack);
+            internal static extern bool SetBPX(global::System.UIntPtr bpxAddress, uint bpxType, __IntPtr bpxCallBack);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "DeleteBPX", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool DeleteBPX(ulong bpxAddress);
+            internal static extern bool DeleteBPX(global::System.UIntPtr bpxAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "SafeDeleteBPX", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool SafeDeleteBPX(ulong bpxAddress);
+            internal static extern bool SafeDeleteBPX(global::System.UIntPtr bpxAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "SetAPIBreakPoint", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -5829,15 +5895,15 @@ namespace TitanEngine.NET
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "SetMemoryBPX", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool SetMemoryBPX(ulong MemoryStart, ulong SizeOfMemory, __IntPtr bpxCallBack);
+            internal static extern bool SetMemoryBPX(global::System.UIntPtr MemoryStart, global::System.UIntPtr SizeOfMemory, __IntPtr bpxCallBack);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "SetMemoryBPXEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool SetMemoryBPXEx(ulong MemoryStart, ulong SizeOfMemory, uint BreakPointType, bool RestoreOnHit, __IntPtr bpxCallBack);
+            internal static extern bool SetMemoryBPXEx(global::System.UIntPtr MemoryStart, global::System.UIntPtr SizeOfMemory, uint BreakPointType, bool RestoreOnHit, __IntPtr bpxCallBack);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "RemoveMemoryBPX", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool RemoveMemoryBPX(ulong MemoryStart, ulong SizeOfMemory);
+            internal static extern bool RemoveMemoryBPX(global::System.UIntPtr MemoryStart, global::System.UIntPtr SizeOfMemory);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "GetContextFPUDataEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -5858,10 +5924,10 @@ namespace TitanEngine.NET
             internal static extern bool SetFullContextDataEx(__IntPtr hActiveThread, __IntPtr titcontext);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "GetContextDataEx", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong GetContextDataEx(__IntPtr hActiveThread, uint IndexOfRegister);
+            internal static extern global::System.UIntPtr GetContextDataEx(__IntPtr hActiveThread, uint IndexOfRegister);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "GetContextData", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong GetContextData(uint IndexOfRegister);
+            internal static extern global::System.UIntPtr GetContextData(uint IndexOfRegister);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "SetContextFPUDataEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -5869,11 +5935,11 @@ namespace TitanEngine.NET
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "SetContextDataEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool SetContextDataEx(__IntPtr hActiveThread, uint IndexOfRegister, ulong NewRegisterValue);
+            internal static extern bool SetContextDataEx(__IntPtr hActiveThread, uint IndexOfRegister, global::System.UIntPtr NewRegisterValue);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "SetContextData", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool SetContextData(uint IndexOfRegister, ulong NewRegisterValue);
+            internal static extern bool SetContextData(uint IndexOfRegister, global::System.UIntPtr NewRegisterValue);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "GetAVXContext", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -5898,10 +5964,10 @@ namespace TitanEngine.NET
             internal static extern bool MatchPattern(__IntPtr MemoryToCheck, int SizeOfMemoryToCheck, __IntPtr PatternToMatch, int SizeOfPatternToMatch, byte* WildCard);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "FindEx", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong FindEx(__IntPtr hProcess, __IntPtr MemoryStart, uint MemorySize, __IntPtr SearchPattern, uint PatternSize, byte* WildCard);
+            internal static extern global::System.UIntPtr FindEx(__IntPtr hProcess, __IntPtr MemoryStart, uint MemorySize, __IntPtr SearchPattern, uint PatternSize, byte* WildCard);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "Find", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong Find(__IntPtr MemoryStart, uint MemorySize, __IntPtr SearchPattern, uint PatternSize, byte* WildCard);
+            internal static extern global::System.UIntPtr Find(__IntPtr MemoryStart, uint MemorySize, __IntPtr SearchPattern, uint PatternSize, byte* WildCard);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "FillEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -5937,27 +6003,27 @@ namespace TitanEngine.NET
             internal static extern int GetExitCode();
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "GetDebuggedDLLBaseAddress", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong GetDebuggedDLLBaseAddress();
+            internal static extern global::System.UIntPtr GetDebuggedDLLBaseAddress();
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "GetDebuggedFileBaseAddress", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong GetDebuggedFileBaseAddress();
+            internal static extern global::System.UIntPtr GetDebuggedFileBaseAddress();
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "GetRemoteString", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
             internal static extern bool GetRemoteString(__IntPtr hProcess, __IntPtr StringAddress, __IntPtr StringStorage, int MaximumStringSize);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "GetFunctionParameter", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong GetFunctionParameter(__IntPtr hProcess, uint FunctionType, uint ParameterNumber, uint ParameterType);
+            internal static extern global::System.UIntPtr GetFunctionParameter(__IntPtr hProcess, uint FunctionType, uint ParameterNumber, uint ParameterType);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "GetJumpDestinationEx", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong GetJumpDestinationEx(__IntPtr hProcess, ulong InstructionAddress, bool JustJumps);
+            internal static extern global::System.UIntPtr GetJumpDestinationEx(__IntPtr hProcess, global::System.UIntPtr InstructionAddress, bool JustJumps);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "GetJumpDestination", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong GetJumpDestination(__IntPtr hProcess, ulong InstructionAddress);
+            internal static extern global::System.UIntPtr GetJumpDestination(__IntPtr hProcess, global::System.UIntPtr InstructionAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "IsJumpGoingToExecuteEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool IsJumpGoingToExecuteEx(__IntPtr hProcess, __IntPtr hThread, ulong InstructionAddress, ulong RegFlags);
+            internal static extern bool IsJumpGoingToExecuteEx(__IntPtr hProcess, __IntPtr hThread, global::System.UIntPtr InstructionAddress, global::System.UIntPtr RegFlags);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "IsJumpGoingToExecute", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -5987,11 +6053,11 @@ namespace TitanEngine.NET
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "SetHardwareBreakPointEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool SetHardwareBreakPointEx(__IntPtr hActiveThread, ulong bpxAddress, uint IndexOfRegister, uint bpxType, uint bpxSize, __IntPtr bpxCallBack, uint* IndexOfSelectedRegister);
+            internal static extern bool SetHardwareBreakPointEx(__IntPtr hActiveThread, global::System.UIntPtr bpxAddress, uint IndexOfRegister, uint bpxType, uint bpxSize, __IntPtr bpxCallBack, uint* IndexOfSelectedRegister);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "SetHardwareBreakPoint", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool SetHardwareBreakPoint(ulong bpxAddress, uint IndexOfRegister, uint bpxType, uint bpxSize, __IntPtr bpxCallBack);
+            internal static extern bool SetHardwareBreakPoint(global::System.UIntPtr bpxAddress, uint IndexOfRegister, uint bpxType, uint bpxSize, __IntPtr bpxCallBack);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "DeleteHardwareBreakPoint", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -6050,13 +6116,13 @@ namespace TitanEngine.NET
             internal static extern bool FindOEPGenericallyW([MarshalAs(UnmanagedType.LPWStr)] string szFileName, __IntPtr TraceInitCallBack, __IntPtr CallBack);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterAddNewDll", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void ImporterAddNewDll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDLLName, ulong FirstThunk);
+            internal static extern void ImporterAddNewDll([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDLLName, global::System.UIntPtr FirstThunk);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterAddNewAPI", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void ImporterAddNewAPI([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szAPIName, ulong ThunkValue);
+            internal static extern void ImporterAddNewAPI([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szAPIName, global::System.UIntPtr ThunkValue);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterAddNewOrdinalAPI", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void ImporterAddNewOrdinalAPI(ulong OrdinalNumber, ulong ThunkValue);
+            internal static extern void ImporterAddNewOrdinalAPI(global::System.UIntPtr OrdinalNumber, global::System.UIntPtr ThunkValue);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetAddedDllCount", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern int ImporterGetAddedDllCount();
@@ -6066,7 +6132,7 @@ namespace TitanEngine.NET
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterExportIAT", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool ImporterExportIAT(ulong StorePlace, ulong FileMapVA, __IntPtr hFileMap);
+            internal static extern bool ImporterExportIAT(global::System.UIntPtr StorePlace, global::System.UIntPtr FileMapVA, __IntPtr hFileMap);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterEstimatedSize", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern int ImporterEstimatedSize();
@@ -6080,86 +6146,86 @@ namespace TitanEngine.NET
             internal static extern bool ImporterExportIATExW([MarshalAs(UnmanagedType.LPWStr)] string szDumpFileName, [MarshalAs(UnmanagedType.LPWStr)] string szExportFileName, [MarshalAs(UnmanagedType.LPWStr)] string szSectionName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterFindAPIWriteLocation", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ImporterFindAPIWriteLocation([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szAPIName);
+            internal static extern global::System.UIntPtr ImporterFindAPIWriteLocation([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szAPIName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterFindOrdinalAPIWriteLocation", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ImporterFindOrdinalAPIWriteLocation(ulong OrdinalNumber);
+            internal static extern global::System.UIntPtr ImporterFindOrdinalAPIWriteLocation(global::System.UIntPtr OrdinalNumber);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterFindAPIByWriteLocation", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ImporterFindAPIByWriteLocation(ulong APIWriteLocation);
+            internal static extern global::System.UIntPtr ImporterFindAPIByWriteLocation(global::System.UIntPtr APIWriteLocation);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterFindDLLByWriteLocation", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ImporterFindDLLByWriteLocation(ulong APIWriteLocation);
+            internal static extern global::System.UIntPtr ImporterFindDLLByWriteLocation(global::System.UIntPtr APIWriteLocation);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetDLLName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr ImporterGetDLLName(ulong APIAddress);
+            internal static extern __IntPtr ImporterGetDLLName(global::System.UIntPtr APIAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetDLLNameW", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr ImporterGetDLLNameW(ulong APIAddress);
+            internal static extern __IntPtr ImporterGetDLLNameW(global::System.UIntPtr APIAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetAPIName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr ImporterGetAPIName(ulong APIAddress);
+            internal static extern __IntPtr ImporterGetAPIName(global::System.UIntPtr APIAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetAPIOrdinalNumber", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ImporterGetAPIOrdinalNumber(ulong APIAddress);
+            internal static extern global::System.UIntPtr ImporterGetAPIOrdinalNumber(global::System.UIntPtr APIAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetAPINameEx", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr ImporterGetAPINameEx(ulong APIAddress, ulong DLLBasesList);
+            internal static extern __IntPtr ImporterGetAPINameEx(global::System.UIntPtr APIAddress, global::System.UIntPtr DLLBasesList);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetRemoteAPIAddress", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ImporterGetRemoteAPIAddress(__IntPtr hProcess, ulong APIAddress);
+            internal static extern global::System.UIntPtr ImporterGetRemoteAPIAddress(__IntPtr hProcess, global::System.UIntPtr APIAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetRemoteAPIAddressEx", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ImporterGetRemoteAPIAddressEx([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDLLName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szAPIName);
+            internal static extern global::System.UIntPtr ImporterGetRemoteAPIAddressEx([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDLLName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szAPIName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetLocalAPIAddress", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ImporterGetLocalAPIAddress(__IntPtr hProcess, ulong APIAddress);
+            internal static extern global::System.UIntPtr ImporterGetLocalAPIAddress(__IntPtr hProcess, global::System.UIntPtr APIAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetDLLNameFromDebugee", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr ImporterGetDLLNameFromDebugee(__IntPtr hProcess, ulong APIAddress);
+            internal static extern __IntPtr ImporterGetDLLNameFromDebugee(__IntPtr hProcess, global::System.UIntPtr APIAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetDLLNameFromDebugeeW", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr ImporterGetDLLNameFromDebugeeW(__IntPtr hProcess, ulong APIAddress);
+            internal static extern __IntPtr ImporterGetDLLNameFromDebugeeW(__IntPtr hProcess, global::System.UIntPtr APIAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetAPINameFromDebugee", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr ImporterGetAPINameFromDebugee(__IntPtr hProcess, ulong APIAddress);
+            internal static extern __IntPtr ImporterGetAPINameFromDebugee(__IntPtr hProcess, global::System.UIntPtr APIAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetAPIOrdinalNumberFromDebugee", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ImporterGetAPIOrdinalNumberFromDebugee(__IntPtr hProcess, ulong APIAddress);
+            internal static extern global::System.UIntPtr ImporterGetAPIOrdinalNumberFromDebugee(__IntPtr hProcess, global::System.UIntPtr APIAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetDLLIndexEx", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int ImporterGetDLLIndexEx(ulong APIAddress, ulong DLLBasesList);
+            internal static extern int ImporterGetDLLIndexEx(global::System.UIntPtr APIAddress, global::System.UIntPtr DLLBasesList);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetDLLIndex", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int ImporterGetDLLIndex(__IntPtr hProcess, ulong APIAddress, ulong DLLBasesList);
+            internal static extern int ImporterGetDLLIndex(__IntPtr hProcess, global::System.UIntPtr APIAddress, global::System.UIntPtr DLLBasesList);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetRemoteDLLBaseEx", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ImporterGetRemoteDLLBaseEx(__IntPtr hProcess, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szModuleName);
+            internal static extern global::System.UIntPtr ImporterGetRemoteDLLBaseEx(__IntPtr hProcess, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szModuleName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetRemoteDLLBaseExW", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr ImporterGetRemoteDLLBaseExW(__IntPtr hProcess, [MarshalAs(UnmanagedType.LPWStr)] string szModuleName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterIsForwardedAPI", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool ImporterIsForwardedAPI(__IntPtr hProcess, ulong APIAddress);
+            internal static extern bool ImporterIsForwardedAPI(__IntPtr hProcess, global::System.UIntPtr APIAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetForwardedAPIName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr ImporterGetForwardedAPIName(__IntPtr hProcess, ulong APIAddress);
+            internal static extern __IntPtr ImporterGetForwardedAPIName(__IntPtr hProcess, global::System.UIntPtr APIAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetForwardedDLLName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr ImporterGetForwardedDLLName(__IntPtr hProcess, ulong APIAddress);
+            internal static extern __IntPtr ImporterGetForwardedDLLName(__IntPtr hProcess, global::System.UIntPtr APIAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetForwardedDLLIndex", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int ImporterGetForwardedDLLIndex(__IntPtr hProcess, ulong APIAddress, ulong DLLBasesList);
+            internal static extern int ImporterGetForwardedDLLIndex(__IntPtr hProcess, global::System.UIntPtr APIAddress, global::System.UIntPtr DLLBasesList);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetForwardedAPIOrdinalNumber", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ImporterGetForwardedAPIOrdinalNumber(__IntPtr hProcess, ulong APIAddress);
+            internal static extern global::System.UIntPtr ImporterGetForwardedAPIOrdinalNumber(__IntPtr hProcess, global::System.UIntPtr APIAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetNearestAPIAddress", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong ImporterGetNearestAPIAddress(__IntPtr hProcess, ulong APIAddress);
+            internal static extern global::System.UIntPtr ImporterGetNearestAPIAddress(__IntPtr hProcess, global::System.UIntPtr APIAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterGetNearestAPIName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr ImporterGetNearestAPIName(__IntPtr hProcess, ulong APIAddress);
+            internal static extern __IntPtr ImporterGetNearestAPIName(__IntPtr hProcess, global::System.UIntPtr APIAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterCopyOriginalIAT", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -6186,32 +6252,32 @@ namespace TitanEngine.NET
             internal static extern bool ImporterMoveOriginalIATW([MarshalAs(UnmanagedType.LPWStr)] string szOriginalFile, [MarshalAs(UnmanagedType.LPWStr)] string szDumpFile, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szSectionName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterAutoSearchIAT", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void ImporterAutoSearchIAT(uint ProcessId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName, ulong SearchStart, __IntPtr pIATStart, __IntPtr pIATSize);
+            internal static extern void ImporterAutoSearchIAT(uint ProcessId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName, global::System.UIntPtr SearchStart, __IntPtr pIATStart, __IntPtr pIATSize);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterAutoSearchIATW", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void ImporterAutoSearchIATW(uint ProcessIds, [MarshalAs(UnmanagedType.LPWStr)] string szFileName, ulong SearchStart, __IntPtr pIATStart, __IntPtr pIATSize);
+            internal static extern void ImporterAutoSearchIATW(uint ProcessIds, [MarshalAs(UnmanagedType.LPWStr)] string szFileName, global::System.UIntPtr SearchStart, __IntPtr pIATStart, __IntPtr pIATSize);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterAutoSearchIATEx", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void ImporterAutoSearchIATEx(uint ProcessId, ulong ImageBase, ulong SearchStart, __IntPtr pIATStart, __IntPtr pIATSize);
+            internal static extern void ImporterAutoSearchIATEx(uint ProcessId, global::System.UIntPtr ImageBase, global::System.UIntPtr SearchStart, __IntPtr pIATStart, __IntPtr pIATSize);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterEnumAddedData", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern void ImporterEnumAddedData(__IntPtr EnumCallBack);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterAutoFixIATEx", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int ImporterAutoFixIATEx(uint ProcessId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDumpedFile, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szSectionName, bool DumpRunningProcess, bool RealignFile, ulong EntryPointAddress, ulong ImageBase, ulong SearchStart, bool TryAutoFix, bool FixEliminations, __IntPtr UnknownPointerFixCallback);
+            internal static extern int ImporterAutoFixIATEx(uint ProcessId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDumpedFile, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szSectionName, bool DumpRunningProcess, bool RealignFile, global::System.UIntPtr EntryPointAddress, global::System.UIntPtr ImageBase, global::System.UIntPtr SearchStart, bool TryAutoFix, bool FixEliminations, __IntPtr UnknownPointerFixCallback);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterAutoFixIATExW", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int ImporterAutoFixIATExW(uint ProcessId, [MarshalAs(UnmanagedType.LPWStr)] string szDumpedFile, [MarshalAs(UnmanagedType.LPWStr)] string szSectionName, bool DumpRunningProcess, bool RealignFile, ulong EntryPointAddress, ulong ImageBase, ulong SearchStart, bool TryAutoFix, bool FixEliminations, __IntPtr UnknownPointerFixCallback);
+            internal static extern int ImporterAutoFixIATExW(uint ProcessId, [MarshalAs(UnmanagedType.LPWStr)] string szDumpedFile, [MarshalAs(UnmanagedType.LPWStr)] string szSectionName, bool DumpRunningProcess, bool RealignFile, global::System.UIntPtr EntryPointAddress, global::System.UIntPtr ImageBase, global::System.UIntPtr SearchStart, bool TryAutoFix, bool FixEliminations, __IntPtr UnknownPointerFixCallback);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterAutoFixIAT", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int ImporterAutoFixIAT(uint ProcessId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDumpedFile, ulong SearchStart);
+            internal static extern int ImporterAutoFixIAT(uint ProcessId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDumpedFile, global::System.UIntPtr SearchStart);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterAutoFixIATW", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int ImporterAutoFixIATW(uint ProcessId, [MarshalAs(UnmanagedType.LPWStr)] string szDumpedFile, ulong SearchStart);
+            internal static extern int ImporterAutoFixIATW(uint ProcessId, [MarshalAs(UnmanagedType.LPWStr)] string szDumpedFile, global::System.UIntPtr SearchStart);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ImporterDeleteAPI", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool ImporterDeleteAPI(ulong apiAddr);
+            internal static extern bool ImporterDeleteAPI(global::System.UIntPtr apiAddr);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "HooksSafeTransitionEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -6237,7 +6303,7 @@ namespace TitanEngine.NET
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "HooksInsertNewIATRedirectionEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool HooksInsertNewIATRedirectionEx(ulong FileMapVA, ulong LoadedModuleBase, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szHookFunction, __IntPtr RedirectTo);
+            internal static extern bool HooksInsertNewIATRedirectionEx(global::System.UIntPtr FileMapVA, global::System.UIntPtr LoadedModuleBase, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szHookFunction, __IntPtr RedirectTo);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "HooksInsertNewIATRedirection", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -6277,28 +6343,28 @@ namespace TitanEngine.NET
             internal static extern void TracerInit();
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "TracerLevel1", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong TracerLevel1(__IntPtr hProcess, ulong AddressToTrace);
+            internal static extern global::System.UIntPtr TracerLevel1(__IntPtr hProcess, global::System.UIntPtr AddressToTrace);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "HashTracerLevel1", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong HashTracerLevel1(__IntPtr hProcess, ulong AddressToTrace, uint InputNumberOfInstructions);
+            internal static extern global::System.UIntPtr HashTracerLevel1(__IntPtr hProcess, global::System.UIntPtr AddressToTrace, uint InputNumberOfInstructions);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "TracerDetectRedirection", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int TracerDetectRedirection(__IntPtr hProcess, ulong AddressToTrace);
+            internal static extern int TracerDetectRedirection(__IntPtr hProcess, global::System.UIntPtr AddressToTrace);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "TracerFixKnownRedirection", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong TracerFixKnownRedirection(__IntPtr hProcess, ulong AddressToTrace, uint RedirectionId);
+            internal static extern global::System.UIntPtr TracerFixKnownRedirection(__IntPtr hProcess, global::System.UIntPtr AddressToTrace, uint RedirectionId);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "TracerFixRedirectionViaImpRecPlugin", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int TracerFixRedirectionViaImpRecPlugin(__IntPtr hProcess, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szPluginName, ulong AddressToTrace);
+            internal static extern int TracerFixRedirectionViaImpRecPlugin(__IntPtr hProcess, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szPluginName, global::System.UIntPtr AddressToTrace);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ExporterCleanup", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern void ExporterCleanup();
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ExporterSetImageBase", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void ExporterSetImageBase(ulong ImageBase);
+            internal static extern void ExporterSetImageBase(global::System.UIntPtr ImageBase);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ExporterInit", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void ExporterInit(uint MemorySize, ulong ImageBase, uint ExportOrdinalBase, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szExportModuleName);
+            internal static extern void ExporterInit(uint MemorySize, global::System.UIntPtr ImageBase, uint ExportOrdinalBase, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szExportModuleName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ExporterAddNewExport", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -6316,7 +6382,7 @@ namespace TitanEngine.NET
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ExporterBuildExportTable", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool ExporterBuildExportTable(ulong StorePlace, ulong FileMapVA);
+            internal static extern bool ExporterBuildExportTable(global::System.UIntPtr StorePlace, global::System.UIntPtr FileMapVA);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ExporterBuildExportTableEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -6425,7 +6491,7 @@ namespace TitanEngine.NET
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "TLSBuildNewTable", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool TLSBuildNewTable(ulong FileMapVA, ulong StorePlace, ulong StorePlaceRVA, __IntPtr ArrayOfCallBacks, uint NumberOfCallBacks);
+            internal static extern bool TLSBuildNewTable(global::System.UIntPtr FileMapVA, global::System.UIntPtr StorePlace, global::System.UIntPtr StorePlaceRVA, __IntPtr ArrayOfCallBacks, uint NumberOfCallBacks);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "TLSBuildNewTableEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -6458,7 +6524,7 @@ namespace TitanEngine.NET
             internal static extern int HandlerEnumerateOpenHandles(uint ProcessId, __IntPtr HandleBuffer, uint MaxHandleCount);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "HandlerGetHandleDetails", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong HandlerGetHandleDetails(__IntPtr hProcess, uint ProcessId, __IntPtr hHandle, uint InformationReturn);
+            internal static extern global::System.UIntPtr HandlerGetHandleDetails(__IntPtr hProcess, uint ProcessId, __IntPtr hHandle, uint InformationReturn);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "HandlerCloseRemoteHandle", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -6490,10 +6556,10 @@ namespace TitanEngine.NET
             internal static extern int HandlerEnumerateOpenMutexes(__IntPtr hProcess, uint ProcessId, __IntPtr HandleBuffer, uint MaxHandleCount);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "HandlerGetOpenMutexHandle", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong HandlerGetOpenMutexHandle(__IntPtr hProcess, uint ProcessId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szMutexString);
+            internal static extern global::System.UIntPtr HandlerGetOpenMutexHandle(__IntPtr hProcess, uint ProcessId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szMutexString);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "HandlerGetOpenMutexHandleW", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong HandlerGetOpenMutexHandleW(__IntPtr hProcess, uint ProcessId, [MarshalAs(UnmanagedType.LPWStr)] string szMutexString);
+            internal static extern global::System.UIntPtr HandlerGetOpenMutexHandleW(__IntPtr hProcess, uint ProcessId, [MarshalAs(UnmanagedType.LPWStr)] string szMutexString);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "HandlerGetProcessIdWhichCreatedMutex", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern int HandlerGetProcessIdWhichCreatedMutex([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szMutexString);
@@ -6515,19 +6581,19 @@ namespace TitanEngine.NET
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "StaticFileLoad", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool StaticFileLoad([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName, uint DesiredAccess, bool SimulateLoad, __IntPtr* FileHandle, uint* LoadedSize, __IntPtr* FileMap, ulong* FileMapVA);
+            internal static extern bool StaticFileLoad([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName, uint DesiredAccess, bool SimulateLoad, __IntPtr* FileHandle, uint* LoadedSize, __IntPtr* FileMap, global::System.UIntPtr* FileMapVA);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "StaticFileLoadW", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool StaticFileLoadW([MarshalAs(UnmanagedType.LPWStr)] string szFileName, uint DesiredAccess, bool SimulateLoad, __IntPtr* FileHandle, uint* LoadedSize, __IntPtr* FileMap, ulong* FileMapVA);
+            internal static extern bool StaticFileLoadW([MarshalAs(UnmanagedType.LPWStr)] string szFileName, uint DesiredAccess, bool SimulateLoad, __IntPtr* FileHandle, uint* LoadedSize, __IntPtr* FileMap, global::System.UIntPtr* FileMapVA);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "StaticFileUnload", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool StaticFileUnload([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName, bool CommitChanges, __IntPtr FileHandle, uint LoadedSize, __IntPtr FileMap, ulong FileMapVA);
+            internal static extern bool StaticFileUnload([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szFileName, bool CommitChanges, __IntPtr FileHandle, uint LoadedSize, __IntPtr FileMap, global::System.UIntPtr FileMapVA);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "StaticFileUnloadW", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool StaticFileUnloadW([MarshalAs(UnmanagedType.LPWStr)] string szFileName, bool CommitChanges, __IntPtr FileHandle, uint LoadedSize, __IntPtr FileMap, ulong FileMapVA);
+            internal static extern bool StaticFileUnloadW([MarshalAs(UnmanagedType.LPWStr)] string szFileName, bool CommitChanges, __IntPtr FileHandle, uint LoadedSize, __IntPtr FileMap, global::System.UIntPtr FileMapVA);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "StaticFileOpen", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -6545,7 +6611,7 @@ namespace TitanEngine.NET
             internal static extern void StaticFileClose(__IntPtr FileHandle);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "StaticMemoryDecrypt", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void StaticMemoryDecrypt(__IntPtr MemoryStart, uint MemorySize, uint DecryptionType, uint DecryptionKeySize, ulong DecryptionKey);
+            internal static extern void StaticMemoryDecrypt(__IntPtr MemoryStart, uint MemorySize, uint DecryptionType, uint DecryptionKeySize, global::System.UIntPtr DecryptionKey);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "StaticMemoryDecryptEx", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern void StaticMemoryDecryptEx(__IntPtr MemoryStart, uint MemorySize, uint DecryptionKeySize, __IntPtr DecryptionCallBack);
@@ -6554,7 +6620,7 @@ namespace TitanEngine.NET
             internal static extern void StaticMemoryDecryptSpecial(__IntPtr MemoryStart, uint MemorySize, uint DecryptionKeySize, uint SpecDecryptionType, __IntPtr DecryptionCallBack);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "StaticSectionDecrypt", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void StaticSectionDecrypt(ulong FileMapVA, uint SectionNumber, bool SimulateLoad, uint DecryptionType, uint DecryptionKeySize, ulong DecryptionKey);
+            internal static extern void StaticSectionDecrypt(global::System.UIntPtr FileMapVA, uint SectionNumber, bool SimulateLoad, uint DecryptionType, uint DecryptionKeySize, global::System.UIntPtr DecryptionKey);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "StaticMemoryDecompress", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -6562,11 +6628,11 @@ namespace TitanEngine.NET
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "StaticRawMemoryCopy", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool StaticRawMemoryCopy(__IntPtr hFile, ulong FileMapVA, ulong VitualAddressToCopy, uint Size, bool AddressIsRVA, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDumpFileName);
+            internal static extern bool StaticRawMemoryCopy(__IntPtr hFile, global::System.UIntPtr FileMapVA, global::System.UIntPtr VitualAddressToCopy, uint Size, bool AddressIsRVA, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szDumpFileName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "StaticRawMemoryCopyW", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool StaticRawMemoryCopyW(__IntPtr hFile, ulong FileMapVA, ulong VitualAddressToCopy, uint Size, bool AddressIsRVA, [MarshalAs(UnmanagedType.LPWStr)] string szDumpFileName);
+            internal static extern bool StaticRawMemoryCopyW(__IntPtr hFile, global::System.UIntPtr FileMapVA, global::System.UIntPtr VitualAddressToCopy, uint Size, bool AddressIsRVA, [MarshalAs(UnmanagedType.LPWStr)] string szDumpFileName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "StaticRawMemoryCopyEx", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -6604,10 +6670,10 @@ namespace TitanEngine.NET
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "EngineUnpackerSetBreakCondition", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool EngineUnpackerSetBreakCondition(__IntPtr SearchStart, uint SearchSize, __IntPtr SearchPattern, uint PatternSize, uint PatternDelta, ulong BreakType, bool SingleBreak, uint Parameter1, uint Parameter2);
+            internal static extern bool EngineUnpackerSetBreakCondition(__IntPtr SearchStart, uint SearchSize, __IntPtr SearchPattern, uint PatternSize, uint PatternDelta, global::System.UIntPtr BreakType, bool SingleBreak, uint Parameter1, uint Parameter2);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "EngineUnpackerSetEntryPointAddress", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void EngineUnpackerSetEntryPointAddress(ulong UnpackedEntryPointAddress);
+            internal static extern void EngineUnpackerSetEntryPointAddress(global::System.UIntPtr UnpackedEntryPointAddress);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "EngineUnpackerFinalizeUnpacking", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern void EngineUnpackerFinalizeUnpacking();
@@ -6640,7 +6706,7 @@ namespace TitanEngine.NET
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "EngineCheckStructAlignment", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool EngineCheckStructAlignment(uint StructureType, ulong StructureSize);
+            internal static extern bool EngineCheckStructAlignment(uint StructureType, global::System.UIntPtr StructureSize);
 
             [SuppressUnmanagedCodeSecurity, DllImport("TitanEngine", EntryPoint = "ExtensionManagerIsPluginLoaded", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
@@ -6678,49 +6744,49 @@ namespace TitanEngine.NET
             internal static extern __IntPtr ExtensionManagerGetPluginInfo([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string szPluginName);
         }
 
-        public static bool DumpProcess(__IntPtr hProcess, __IntPtr ImageBase, string szDumpFileName, ulong EntryPoint)
+        public static bool DumpProcess(__IntPtr hProcess, __IntPtr ImageBase, string szDumpFileName, global::System.UIntPtr EntryPoint)
         {
             var __ret = __Internal.DumpProcess(hProcess, ImageBase, szDumpFileName, EntryPoint);
             return __ret;
         }
 
-        public static bool DumpProcessW(__IntPtr hProcess, __IntPtr ImageBase, string szDumpFileName, ulong EntryPoint)
+        public static bool DumpProcessW(__IntPtr hProcess, __IntPtr ImageBase, string szDumpFileName, global::System.UIntPtr EntryPoint)
         {
             var __ret = __Internal.DumpProcessW(hProcess, ImageBase, szDumpFileName, EntryPoint);
             return __ret;
         }
 
-        public static bool DumpProcessEx(uint ProcessId, __IntPtr ImageBase, string szDumpFileName, ulong EntryPoint)
+        public static bool DumpProcessEx(uint ProcessId, __IntPtr ImageBase, string szDumpFileName, global::System.UIntPtr EntryPoint)
         {
             var __ret = __Internal.DumpProcessEx(ProcessId, ImageBase, szDumpFileName, EntryPoint);
             return __ret;
         }
 
-        public static bool DumpProcessExW(uint ProcessId, __IntPtr ImageBase, string szDumpFileName, ulong EntryPoint)
+        public static bool DumpProcessExW(uint ProcessId, __IntPtr ImageBase, string szDumpFileName, global::System.UIntPtr EntryPoint)
         {
             var __ret = __Internal.DumpProcessExW(ProcessId, ImageBase, szDumpFileName, EntryPoint);
             return __ret;
         }
 
-        public static bool DumpMemory(__IntPtr hProcess, __IntPtr MemoryStart, ulong MemorySize, string szDumpFileName)
+        public static bool DumpMemory(__IntPtr hProcess, __IntPtr MemoryStart, global::System.UIntPtr MemorySize, string szDumpFileName)
         {
             var __ret = __Internal.DumpMemory(hProcess, MemoryStart, MemorySize, szDumpFileName);
             return __ret;
         }
 
-        public static bool DumpMemoryW(__IntPtr hProcess, __IntPtr MemoryStart, ulong MemorySize, string szDumpFileName)
+        public static bool DumpMemoryW(__IntPtr hProcess, __IntPtr MemoryStart, global::System.UIntPtr MemorySize, string szDumpFileName)
         {
             var __ret = __Internal.DumpMemoryW(hProcess, MemoryStart, MemorySize, szDumpFileName);
             return __ret;
         }
 
-        public static bool DumpMemoryEx(uint ProcessId, __IntPtr MemoryStart, ulong MemorySize, string szDumpFileName)
+        public static bool DumpMemoryEx(uint ProcessId, __IntPtr MemoryStart, global::System.UIntPtr MemorySize, string szDumpFileName)
         {
             var __ret = __Internal.DumpMemoryEx(ProcessId, MemoryStart, MemorySize, szDumpFileName);
             return __ret;
         }
 
-        public static bool DumpMemoryExW(uint ProcessId, __IntPtr MemoryStart, ulong MemorySize, string szDumpFileName)
+        public static bool DumpMemoryExW(uint ProcessId, __IntPtr MemoryStart, global::System.UIntPtr MemorySize, string szDumpFileName)
         {
             var __ret = __Internal.DumpMemoryExW(ProcessId, MemoryStart, MemorySize, szDumpFileName);
             return __ret;
@@ -6980,25 +7046,25 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static ulong GetPE32DataFromMappedFile(ulong FileMapVA, uint WhichSection, uint WhichData)
+        public static global::System.UIntPtr GetPE32DataFromMappedFile(global::System.UIntPtr FileMapVA, uint WhichSection, uint WhichData)
         {
             var __ret = __Internal.GetPE32DataFromMappedFile(FileMapVA, WhichSection, WhichData);
             return __ret;
         }
 
-        public static ulong GetPE32Data(string szFileName, uint WhichSection, uint WhichData)
+        public static global::System.UIntPtr GetPE32Data(string szFileName, uint WhichSection, uint WhichData)
         {
             var __ret = __Internal.GetPE32Data(szFileName, WhichSection, WhichData);
             return __ret;
         }
 
-        public static ulong GetPE32DataW(string szFileName, uint WhichSection, uint WhichData)
+        public static global::System.UIntPtr GetPE32DataW(string szFileName, uint WhichSection, uint WhichData)
         {
             var __ret = __Internal.GetPE32DataW(szFileName, WhichSection, WhichData);
             return __ret;
         }
 
-        public static bool GetPE32DataFromMappedFileEx(ulong FileMapVA, __IntPtr DataStorage)
+        public static bool GetPE32DataFromMappedFileEx(global::System.UIntPtr FileMapVA, __IntPtr DataStorage)
         {
             var __ret = __Internal.GetPE32DataFromMappedFileEx(FileMapVA, DataStorage);
             return __ret;
@@ -7016,25 +7082,25 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static bool SetPE32DataForMappedFile(ulong FileMapVA, uint WhichSection, uint WhichData, ulong NewDataValue)
+        public static bool SetPE32DataForMappedFile(global::System.UIntPtr FileMapVA, uint WhichSection, uint WhichData, global::System.UIntPtr NewDataValue)
         {
             var __ret = __Internal.SetPE32DataForMappedFile(FileMapVA, WhichSection, WhichData, NewDataValue);
             return __ret;
         }
 
-        public static bool SetPE32Data(string szFileName, uint WhichSection, uint WhichData, ulong NewDataValue)
+        public static bool SetPE32Data(string szFileName, uint WhichSection, uint WhichData, global::System.UIntPtr NewDataValue)
         {
             var __ret = __Internal.SetPE32Data(szFileName, WhichSection, WhichData, NewDataValue);
             return __ret;
         }
 
-        public static bool SetPE32DataW(string szFileName, uint WhichSection, uint WhichData, ulong NewDataValue)
+        public static bool SetPE32DataW(string szFileName, uint WhichSection, uint WhichData, global::System.UIntPtr NewDataValue)
         {
             var __ret = __Internal.SetPE32DataW(szFileName, WhichSection, WhichData, NewDataValue);
             return __ret;
         }
 
-        public static bool SetPE32DataForMappedFileEx(ulong FileMapVA, __IntPtr DataStorage)
+        public static bool SetPE32DataForMappedFileEx(global::System.UIntPtr FileMapVA, __IntPtr DataStorage)
         {
             var __ret = __Internal.SetPE32DataForMappedFileEx(FileMapVA, DataStorage);
             return __ret;
@@ -7052,39 +7118,39 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static int GetPE32SectionNumberFromVA(ulong FileMapVA, ulong AddressToConvert)
+        public static int GetPE32SectionNumberFromVA(global::System.UIntPtr FileMapVA, global::System.UIntPtr AddressToConvert)
         {
             var __ret = __Internal.GetPE32SectionNumberFromVA(FileMapVA, AddressToConvert);
             return __ret;
         }
 
-        public static ulong ConvertVAtoFileOffset(ulong FileMapVA, ulong AddressToConvert, bool ReturnType)
+        public static global::System.UIntPtr ConvertVAtoFileOffset(global::System.UIntPtr FileMapVA, global::System.UIntPtr AddressToConvert, bool ReturnType)
         {
             var __ret = __Internal.ConvertVAtoFileOffset(FileMapVA, AddressToConvert, ReturnType);
             return __ret;
         }
 
-        public static ulong ConvertVAtoFileOffsetEx(ulong FileMapVA, uint FileSize, ulong ImageBase, ulong AddressToConvert, bool AddressIsRVA, bool ReturnType)
+        public static global::System.UIntPtr ConvertVAtoFileOffsetEx(global::System.UIntPtr FileMapVA, uint FileSize, global::System.UIntPtr ImageBase, global::System.UIntPtr AddressToConvert, bool AddressIsRVA, bool ReturnType)
         {
             var __ret = __Internal.ConvertVAtoFileOffsetEx(FileMapVA, FileSize, ImageBase, AddressToConvert, AddressIsRVA, ReturnType);
             return __ret;
         }
 
-        public static ulong ConvertFileOffsetToVA(ulong FileMapVA, ulong AddressToConvert, bool ReturnType)
+        public static global::System.UIntPtr ConvertFileOffsetToVA(global::System.UIntPtr FileMapVA, global::System.UIntPtr AddressToConvert, bool ReturnType)
         {
             var __ret = __Internal.ConvertFileOffsetToVA(FileMapVA, AddressToConvert, ReturnType);
             return __ret;
         }
 
-        public static ulong ConvertFileOffsetToVAEx(ulong FileMapVA, uint FileSize, ulong ImageBase, ulong AddressToConvert, bool ReturnType)
+        public static global::System.UIntPtr ConvertFileOffsetToVAEx(global::System.UIntPtr FileMapVA, uint FileSize, global::System.UIntPtr ImageBase, global::System.UIntPtr AddressToConvert, bool ReturnType)
         {
             var __ret = __Internal.ConvertFileOffsetToVAEx(FileMapVA, FileSize, ImageBase, AddressToConvert, ReturnType);
             return __ret;
         }
 
-        public static bool MemoryReadSafe(__IntPtr hProcess, __IntPtr lpBaseAddress, __IntPtr lpBuffer, ulong nSize, ref ulong lpNumberOfBytesRead)
+        public static bool MemoryReadSafe(__IntPtr hProcess, __IntPtr lpBaseAddress, __IntPtr lpBuffer, global::System.UIntPtr nSize, ref global::System.UIntPtr lpNumberOfBytesRead)
         {
-            fixed (ulong* __lpNumberOfBytesRead4 = &lpNumberOfBytesRead)
+            fixed (global::System.UIntPtr* __lpNumberOfBytesRead4 = &lpNumberOfBytesRead)
             {
                 var __arg4 = __lpNumberOfBytesRead4;
                 var __ret = __Internal.MemoryReadSafe(hProcess, lpBaseAddress, lpBuffer, nSize, __arg4);
@@ -7092,9 +7158,9 @@ namespace TitanEngine.NET
             }
         }
 
-        public static bool MemoryWriteSafe(__IntPtr hProcess, __IntPtr lpBaseAddress, __IntPtr lpBuffer, ulong nSize, ref ulong lpNumberOfBytesWritten)
+        public static bool MemoryWriteSafe(__IntPtr hProcess, __IntPtr lpBaseAddress, __IntPtr lpBuffer, global::System.UIntPtr nSize, ref global::System.UIntPtr lpNumberOfBytesWritten)
         {
-            fixed (ulong* __lpNumberOfBytesWritten4 = &lpNumberOfBytesWritten)
+            fixed (global::System.UIntPtr* __lpNumberOfBytesWritten4 = &lpNumberOfBytesWritten)
             {
                 var __arg4 = __lpNumberOfBytesWritten4;
                 var __ret = __Internal.MemoryWriteSafe(hProcess, lpBaseAddress, lpBuffer, nSize, __arg4);
@@ -7114,7 +7180,7 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static int RealignPE(ulong FileMapVA, uint FileSize, uint RealingMode)
+        public static int RealignPE(global::System.UIntPtr FileMapVA, uint FileSize, uint RealingMode)
         {
             var __ret = __Internal.RealignPE(FileMapVA, FileSize, RealingMode);
             return __ret;
@@ -7168,13 +7234,13 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static bool IsFileDLL(string szFileName, ulong FileMapVA)
+        public static bool IsFileDLL(string szFileName, global::System.UIntPtr FileMapVA)
         {
             var __ret = __Internal.IsFileDLL(szFileName, FileMapVA);
             return __ret;
         }
 
-        public static bool IsFileDLLW(string szFileName, ulong FileMapVA)
+        public static bool IsFileDLLW(string szFileName, global::System.UIntPtr FileMapVA)
         {
             var __ret = __Internal.IsFileDLLW(szFileName, FileMapVA);
             return __ret;
@@ -7221,12 +7287,12 @@ namespace TitanEngine.NET
             __Internal.RelocaterCleanup();
         }
 
-        public static void RelocaterInit(uint MemorySize, ulong OldImageBase, ulong NewImageBase)
+        public static void RelocaterInit(uint MemorySize, global::System.UIntPtr OldImageBase, global::System.UIntPtr NewImageBase)
         {
             __Internal.RelocaterInit(MemorySize, OldImageBase, NewImageBase);
         }
 
-        public static void RelocaterAddNewRelocation(__IntPtr hProcess, ulong RelocateAddress, uint RelocateState)
+        public static void RelocaterAddNewRelocation(__IntPtr hProcess, global::System.UIntPtr RelocateAddress, uint RelocateState)
         {
             __Internal.RelocaterAddNewRelocation(hProcess, RelocateAddress, RelocateState);
         }
@@ -7237,7 +7303,7 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static bool RelocaterExportRelocation(ulong StorePlace, uint StorePlaceRVA, ulong FileMapVA)
+        public static bool RelocaterExportRelocation(global::System.UIntPtr StorePlace, uint StorePlaceRVA, global::System.UIntPtr FileMapVA)
         {
             var __ret = __Internal.RelocaterExportRelocation(StorePlace, StorePlaceRVA, FileMapVA);
             return __ret;
@@ -7255,55 +7321,55 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static bool RelocaterGrabRelocationTable(__IntPtr hProcess, ulong MemoryStart, uint MemorySize)
+        public static bool RelocaterGrabRelocationTable(__IntPtr hProcess, global::System.UIntPtr MemoryStart, uint MemorySize)
         {
             var __ret = __Internal.RelocaterGrabRelocationTable(hProcess, MemoryStart, MemorySize);
             return __ret;
         }
 
-        public static bool RelocaterGrabRelocationTableEx(__IntPtr hProcess, ulong MemoryStart, ulong MemorySize, uint NtSizeOfImage)
+        public static bool RelocaterGrabRelocationTableEx(__IntPtr hProcess, global::System.UIntPtr MemoryStart, global::System.UIntPtr MemorySize, uint NtSizeOfImage)
         {
             var __ret = __Internal.RelocaterGrabRelocationTableEx(hProcess, MemoryStart, MemorySize, NtSizeOfImage);
             return __ret;
         }
 
-        public static bool RelocaterMakeSnapshot(__IntPtr hProcess, string szSaveFileName, __IntPtr MemoryStart, ulong MemorySize)
+        public static bool RelocaterMakeSnapshot(__IntPtr hProcess, string szSaveFileName, __IntPtr MemoryStart, global::System.UIntPtr MemorySize)
         {
             var __ret = __Internal.RelocaterMakeSnapshot(hProcess, szSaveFileName, MemoryStart, MemorySize);
             return __ret;
         }
 
-        public static bool RelocaterMakeSnapshotW(__IntPtr hProcess, string szSaveFileName, __IntPtr MemoryStart, ulong MemorySize)
+        public static bool RelocaterMakeSnapshotW(__IntPtr hProcess, string szSaveFileName, __IntPtr MemoryStart, global::System.UIntPtr MemorySize)
         {
             var __ret = __Internal.RelocaterMakeSnapshotW(hProcess, szSaveFileName, MemoryStart, MemorySize);
             return __ret;
         }
 
-        public static bool RelocaterCompareTwoSnapshots(__IntPtr hProcess, ulong LoadedImageBase, ulong NtSizeOfImage, string szDumpFile1, string szDumpFile2, ulong MemStart)
+        public static bool RelocaterCompareTwoSnapshots(__IntPtr hProcess, global::System.UIntPtr LoadedImageBase, global::System.UIntPtr NtSizeOfImage, string szDumpFile1, string szDumpFile2, global::System.UIntPtr MemStart)
         {
             var __ret = __Internal.RelocaterCompareTwoSnapshots(hProcess, LoadedImageBase, NtSizeOfImage, szDumpFile1, szDumpFile2, MemStart);
             return __ret;
         }
 
-        public static bool RelocaterCompareTwoSnapshotsW(__IntPtr hProcess, ulong LoadedImageBase, ulong NtSizeOfImage, string szDumpFile1, string szDumpFile2, ulong MemStart)
+        public static bool RelocaterCompareTwoSnapshotsW(__IntPtr hProcess, global::System.UIntPtr LoadedImageBase, global::System.UIntPtr NtSizeOfImage, string szDumpFile1, string szDumpFile2, global::System.UIntPtr MemStart)
         {
             var __ret = __Internal.RelocaterCompareTwoSnapshotsW(hProcess, LoadedImageBase, NtSizeOfImage, szDumpFile1, szDumpFile2, MemStart);
             return __ret;
         }
 
-        public static bool RelocaterChangeFileBase(string szFileName, ulong NewImageBase)
+        public static bool RelocaterChangeFileBase(string szFileName, global::System.UIntPtr NewImageBase)
         {
             var __ret = __Internal.RelocaterChangeFileBase(szFileName, NewImageBase);
             return __ret;
         }
 
-        public static bool RelocaterChangeFileBaseW(string szFileName, ulong NewImageBase)
+        public static bool RelocaterChangeFileBaseW(string szFileName, global::System.UIntPtr NewImageBase)
         {
             var __ret = __Internal.RelocaterChangeFileBaseW(szFileName, NewImageBase);
             return __ret;
         }
 
-        public static bool RelocaterRelocateMemoryBlock(ulong FileMapVA, ulong MemoryLocation, __IntPtr RelocateMemory, uint RelocateMemorySize, ulong CurrentLoadedBase, ulong RelocateBase)
+        public static bool RelocaterRelocateMemoryBlock(global::System.UIntPtr FileMapVA, global::System.UIntPtr MemoryLocation, __IntPtr RelocateMemory, uint RelocateMemorySize, global::System.UIntPtr CurrentLoadedBase, global::System.UIntPtr RelocateBase)
         {
             var __ret = __Internal.RelocaterRelocateMemoryBlock(FileMapVA, MemoryLocation, RelocateMemory, RelocateMemorySize, CurrentLoadedBase, RelocateBase);
             return __ret;
@@ -7321,13 +7387,13 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static ulong ResourcerLoadFileForResourceUse(string szFileName)
+        public static global::System.UIntPtr ResourcerLoadFileForResourceUse(string szFileName)
         {
             var __ret = __Internal.ResourcerLoadFileForResourceUse(szFileName);
             return __ret;
         }
 
-        public static ulong ResourcerLoadFileForResourceUseW(string szFileName)
+        public static global::System.UIntPtr ResourcerLoadFileForResourceUseW(string szFileName)
         {
             var __ret = __Internal.ResourcerLoadFileForResourceUseW(szFileName);
             return __ret;
@@ -7351,45 +7417,33 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static bool ResourcerFindResource(string szFileName, string szResourceType, uint ResourceType, string szResourceName, uint ResourceName, uint ResourceLanguage, ref ulong pResourceData, ref uint pResourceSize)
+        public static bool ResourcerFindResource(string szFileName, string szResourceType, uint ResourceType, string szResourceName, uint ResourceName, uint ResourceLanguage, ref global::System.UIntPtr* pResourceData, ref uint pResourceSize)
         {
-            fixed (ulong* __pResourceData6 = &pResourceData)
+            fixed (uint* __pResourceSize7 = &pResourceSize)
             {
-                var __arg6 = __pResourceData6;
-                fixed (uint* __pResourceSize7 = &pResourceSize)
-                {
-                    var __arg7 = __pResourceSize7;
-                    var __ret = __Internal.ResourcerFindResource(szFileName, szResourceType, ResourceType, szResourceName, ResourceName, ResourceLanguage, __arg6, __arg7);
-                    return __ret;
-                }
+                var __arg7 = __pResourceSize7;
+                var __ret = __Internal.ResourcerFindResource(szFileName, szResourceType, ResourceType, szResourceName, ResourceName, ResourceLanguage, pResourceData, __arg7);
+                return __ret;
             }
         }
 
-        public static bool ResourcerFindResourceW(string szFileName, string szResourceType, uint ResourceType, string szResourceName, uint ResourceName, uint ResourceLanguage, ref ulong pResourceData, ref uint pResourceSize)
+        public static bool ResourcerFindResourceW(string szFileName, string szResourceType, uint ResourceType, string szResourceName, uint ResourceName, uint ResourceLanguage, ref global::System.UIntPtr* pResourceData, ref uint pResourceSize)
         {
-            fixed (ulong* __pResourceData6 = &pResourceData)
+            fixed (uint* __pResourceSize7 = &pResourceSize)
             {
-                var __arg6 = __pResourceData6;
-                fixed (uint* __pResourceSize7 = &pResourceSize)
-                {
-                    var __arg7 = __pResourceSize7;
-                    var __ret = __Internal.ResourcerFindResourceW(szFileName, szResourceType, ResourceType, szResourceName, ResourceName, ResourceLanguage, __arg6, __arg7);
-                    return __ret;
-                }
+                var __arg7 = __pResourceSize7;
+                var __ret = __Internal.ResourcerFindResourceW(szFileName, szResourceType, ResourceType, szResourceName, ResourceName, ResourceLanguage, pResourceData, __arg7);
+                return __ret;
             }
         }
 
-        public static bool ResourcerFindResourceEx(ulong FileMapVA, uint FileSize, string szResourceType, uint ResourceType, string szResourceName, uint ResourceName, uint ResourceLanguage, ref ulong pResourceData, ref uint pResourceSize)
+        public static bool ResourcerFindResourceEx(global::System.UIntPtr FileMapVA, uint FileSize, string szResourceType, uint ResourceType, string szResourceName, uint ResourceName, uint ResourceLanguage, ref global::System.UIntPtr* pResourceData, ref uint pResourceSize)
         {
-            fixed (ulong* __pResourceData7 = &pResourceData)
+            fixed (uint* __pResourceSize8 = &pResourceSize)
             {
-                var __arg7 = __pResourceData7;
-                fixed (uint* __pResourceSize8 = &pResourceSize)
-                {
-                    var __arg8 = __pResourceSize8;
-                    var __ret = __Internal.ResourcerFindResourceEx(FileMapVA, FileSize, szResourceType, ResourceType, szResourceName, ResourceName, ResourceLanguage, __arg7, __arg8);
-                    return __ret;
-                }
+                var __arg8 = __pResourceSize8;
+                var __ret = __Internal.ResourcerFindResourceEx(FileMapVA, FileSize, szResourceType, ResourceType, szResourceName, ResourceName, ResourceLanguage, pResourceData, __arg8);
+                return __ret;
             }
         }
 
@@ -7403,7 +7457,7 @@ namespace TitanEngine.NET
             __Internal.ResourcerEnumerateResourceW(szFileName, CallBack);
         }
 
-        public static void ResourcerEnumerateResourceEx(ulong FileMapVA, uint FileSize, __IntPtr CallBack)
+        public static void ResourcerEnumerateResourceEx(global::System.UIntPtr FileMapVA, uint FileSize, __IntPtr CallBack)
         {
             __Internal.ResourcerEnumerateResourceEx(FileMapVA, FileSize, CallBack);
         }
@@ -7467,7 +7521,7 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static ulong ThreaderCreateRemoteThread(ulong ThreadStartAddress, bool AutoCloseTheHandle, __IntPtr ThreadPassParameter, ref uint ThreadId)
+        public static global::System.UIntPtr ThreaderCreateRemoteThread(global::System.UIntPtr ThreadStartAddress, bool AutoCloseTheHandle, __IntPtr ThreadPassParameter, ref uint ThreadId)
         {
             fixed (uint* __ThreadId3 = &ThreadId)
             {
@@ -7483,7 +7537,7 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static ulong ThreaderCreateRemoteThreadEx(__IntPtr hProcess, ulong ThreadStartAddress, bool AutoCloseTheHandle, __IntPtr ThreadPassParameter, ref uint ThreadId)
+        public static global::System.UIntPtr ThreaderCreateRemoteThreadEx(__IntPtr hProcess, global::System.UIntPtr ThreadStartAddress, bool AutoCloseTheHandle, __IntPtr ThreadPassParameter, ref uint ThreadId)
         {
             fixed (uint* __ThreadId4 = &ThreadId)
             {
@@ -7528,7 +7582,7 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static ulong ThreaderGetOpenHandleForThread(uint ThreadId)
+        public static global::System.UIntPtr ThreaderGetOpenHandleForThread(uint ThreadId)
         {
             var __ret = __Internal.ThreaderGetOpenHandleForThread(ThreadId);
             return __ret;
@@ -7540,7 +7594,7 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static __IntPtr StaticDisassembleEx(ulong DisassmStart, __IntPtr DisassmAddress)
+        public static __IntPtr StaticDisassembleEx(global::System.UIntPtr DisassmStart, __IntPtr DisassmAddress)
         {
             var __ret = __Internal.StaticDisassembleEx(DisassmStart, DisassmAddress);
             return __ret;
@@ -7641,37 +7695,37 @@ namespace TitanEngine.NET
             __Internal.SetBPXOptions(DefaultBreakPointType);
         }
 
-        public static bool IsBPXEnabled(ulong bpxAddress)
+        public static bool IsBPXEnabled(global::System.UIntPtr bpxAddress)
         {
             var __ret = __Internal.IsBPXEnabled(bpxAddress);
             return __ret;
         }
 
-        public static bool EnableBPX(ulong bpxAddress)
+        public static bool EnableBPX(global::System.UIntPtr bpxAddress)
         {
             var __ret = __Internal.EnableBPX(bpxAddress);
             return __ret;
         }
 
-        public static bool DisableBPX(ulong bpxAddress)
+        public static bool DisableBPX(global::System.UIntPtr bpxAddress)
         {
             var __ret = __Internal.DisableBPX(bpxAddress);
             return __ret;
         }
 
-        public static bool SetBPX(ulong bpxAddress, uint bpxType, __IntPtr bpxCallBack)
+        public static bool SetBPX(global::System.UIntPtr bpxAddress, uint bpxType, __IntPtr bpxCallBack)
         {
             var __ret = __Internal.SetBPX(bpxAddress, bpxType, bpxCallBack);
             return __ret;
         }
 
-        public static bool DeleteBPX(ulong bpxAddress)
+        public static bool DeleteBPX(global::System.UIntPtr bpxAddress)
         {
             var __ret = __Internal.DeleteBPX(bpxAddress);
             return __ret;
         }
 
-        public static bool SafeDeleteBPX(ulong bpxAddress)
+        public static bool SafeDeleteBPX(global::System.UIntPtr bpxAddress)
         {
             var __ret = __Internal.SafeDeleteBPX(bpxAddress);
             return __ret;
@@ -7695,19 +7749,19 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static bool SetMemoryBPX(ulong MemoryStart, ulong SizeOfMemory, __IntPtr bpxCallBack)
+        public static bool SetMemoryBPX(global::System.UIntPtr MemoryStart, global::System.UIntPtr SizeOfMemory, __IntPtr bpxCallBack)
         {
             var __ret = __Internal.SetMemoryBPX(MemoryStart, SizeOfMemory, bpxCallBack);
             return __ret;
         }
 
-        public static bool SetMemoryBPXEx(ulong MemoryStart, ulong SizeOfMemory, uint BreakPointType, bool RestoreOnHit, __IntPtr bpxCallBack)
+        public static bool SetMemoryBPXEx(global::System.UIntPtr MemoryStart, global::System.UIntPtr SizeOfMemory, uint BreakPointType, bool RestoreOnHit, __IntPtr bpxCallBack)
         {
             var __ret = __Internal.SetMemoryBPXEx(MemoryStart, SizeOfMemory, BreakPointType, RestoreOnHit, bpxCallBack);
             return __ret;
         }
 
-        public static bool RemoveMemoryBPX(ulong MemoryStart, ulong SizeOfMemory)
+        public static bool RemoveMemoryBPX(global::System.UIntPtr MemoryStart, global::System.UIntPtr SizeOfMemory)
         {
             var __ret = __Internal.RemoveMemoryBPX(MemoryStart, SizeOfMemory);
             return __ret;
@@ -7762,13 +7816,13 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static ulong GetContextDataEx(__IntPtr hActiveThread, uint IndexOfRegister)
+        public static global::System.UIntPtr GetContextDataEx(__IntPtr hActiveThread, uint IndexOfRegister)
         {
             var __ret = __Internal.GetContextDataEx(hActiveThread, IndexOfRegister);
             return __ret;
         }
 
-        public static ulong GetContextData(uint IndexOfRegister)
+        public static global::System.UIntPtr GetContextData(uint IndexOfRegister)
         {
             var __ret = __Internal.GetContextData(IndexOfRegister);
             return __ret;
@@ -7780,13 +7834,13 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static bool SetContextDataEx(__IntPtr hActiveThread, uint IndexOfRegister, ulong NewRegisterValue)
+        public static bool SetContextDataEx(__IntPtr hActiveThread, uint IndexOfRegister, global::System.UIntPtr NewRegisterValue)
         {
             var __ret = __Internal.SetContextDataEx(hActiveThread, IndexOfRegister, NewRegisterValue);
             return __ret;
         }
 
-        public static bool SetContextData(uint IndexOfRegister, ulong NewRegisterValue)
+        public static bool SetContextData(uint IndexOfRegister, global::System.UIntPtr NewRegisterValue)
         {
             var __ret = __Internal.SetContextData(IndexOfRegister, NewRegisterValue);
             return __ret;
@@ -7829,13 +7883,13 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static ulong FindEx(__IntPtr hProcess, __IntPtr MemoryStart, uint MemorySize, __IntPtr SearchPattern, uint PatternSize, byte* WildCard)
+        public static global::System.UIntPtr FindEx(__IntPtr hProcess, __IntPtr MemoryStart, uint MemorySize, __IntPtr SearchPattern, uint PatternSize, byte* WildCard)
         {
             var __ret = __Internal.FindEx(hProcess, MemoryStart, MemorySize, SearchPattern, PatternSize, WildCard);
             return __ret;
         }
 
-        public static ulong Find(__IntPtr MemoryStart, uint MemorySize, __IntPtr SearchPattern, uint PatternSize, byte* WildCard)
+        public static global::System.UIntPtr Find(__IntPtr MemoryStart, uint MemorySize, __IntPtr SearchPattern, uint PatternSize, byte* WildCard)
         {
             var __ret = __Internal.Find(MemoryStart, MemorySize, SearchPattern, PatternSize, WildCard);
             return __ret;
@@ -7895,13 +7949,13 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static ulong GetDebuggedDLLBaseAddress()
+        public static global::System.UIntPtr GetDebuggedDLLBaseAddress()
         {
             var __ret = __Internal.GetDebuggedDLLBaseAddress();
             return __ret;
         }
 
-        public static ulong GetDebuggedFileBaseAddress()
+        public static global::System.UIntPtr GetDebuggedFileBaseAddress()
         {
             var __ret = __Internal.GetDebuggedFileBaseAddress();
             return __ret;
@@ -7913,25 +7967,25 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static ulong GetFunctionParameter(__IntPtr hProcess, uint FunctionType, uint ParameterNumber, uint ParameterType)
+        public static global::System.UIntPtr GetFunctionParameter(__IntPtr hProcess, uint FunctionType, uint ParameterNumber, uint ParameterType)
         {
             var __ret = __Internal.GetFunctionParameter(hProcess, FunctionType, ParameterNumber, ParameterType);
             return __ret;
         }
 
-        public static ulong GetJumpDestinationEx(__IntPtr hProcess, ulong InstructionAddress, bool JustJumps)
+        public static global::System.UIntPtr GetJumpDestinationEx(__IntPtr hProcess, global::System.UIntPtr InstructionAddress, bool JustJumps)
         {
             var __ret = __Internal.GetJumpDestinationEx(hProcess, InstructionAddress, JustJumps);
             return __ret;
         }
 
-        public static ulong GetJumpDestination(__IntPtr hProcess, ulong InstructionAddress)
+        public static global::System.UIntPtr GetJumpDestination(__IntPtr hProcess, global::System.UIntPtr InstructionAddress)
         {
             var __ret = __Internal.GetJumpDestination(hProcess, InstructionAddress);
             return __ret;
         }
 
-        public static bool IsJumpGoingToExecuteEx(__IntPtr hProcess, __IntPtr hThread, ulong InstructionAddress, ulong RegFlags)
+        public static bool IsJumpGoingToExecuteEx(__IntPtr hProcess, __IntPtr hThread, global::System.UIntPtr InstructionAddress, global::System.UIntPtr RegFlags)
         {
             var __ret = __Internal.IsJumpGoingToExecuteEx(hProcess, hThread, InstructionAddress, RegFlags);
             return __ret;
@@ -7983,7 +8037,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public static bool SetHardwareBreakPointEx(__IntPtr hActiveThread, ulong bpxAddress, uint IndexOfRegister, uint bpxType, uint bpxSize, __IntPtr bpxCallBack, ref uint IndexOfSelectedRegister)
+        public static bool SetHardwareBreakPointEx(__IntPtr hActiveThread, global::System.UIntPtr bpxAddress, uint IndexOfRegister, uint bpxType, uint bpxSize, __IntPtr bpxCallBack, ref uint IndexOfSelectedRegister)
         {
             fixed (uint* __IndexOfSelectedRegister6 = &IndexOfSelectedRegister)
             {
@@ -7993,7 +8047,7 @@ namespace TitanEngine.NET
             }
         }
 
-        public static bool SetHardwareBreakPoint(ulong bpxAddress, uint IndexOfRegister, uint bpxType, uint bpxSize, __IntPtr bpxCallBack)
+        public static bool SetHardwareBreakPoint(global::System.UIntPtr bpxAddress, uint IndexOfRegister, uint bpxType, uint bpxSize, __IntPtr bpxCallBack)
         {
             var __ret = __Internal.SetHardwareBreakPoint(bpxAddress, IndexOfRegister, bpxType, bpxSize, bpxCallBack);
             return __ret;
@@ -8087,17 +8141,17 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static void ImporterAddNewDll(string szDLLName, ulong FirstThunk)
+        public static void ImporterAddNewDll(string szDLLName, global::System.UIntPtr FirstThunk)
         {
             __Internal.ImporterAddNewDll(szDLLName, FirstThunk);
         }
 
-        public static void ImporterAddNewAPI(string szAPIName, ulong ThunkValue)
+        public static void ImporterAddNewAPI(string szAPIName, global::System.UIntPtr ThunkValue)
         {
             __Internal.ImporterAddNewAPI(szAPIName, ThunkValue);
         }
 
-        public static void ImporterAddNewOrdinalAPI(ulong OrdinalNumber, ulong ThunkValue)
+        public static void ImporterAddNewOrdinalAPI(global::System.UIntPtr OrdinalNumber, global::System.UIntPtr ThunkValue)
         {
             __Internal.ImporterAddNewOrdinalAPI(OrdinalNumber, ThunkValue);
         }
@@ -8114,7 +8168,7 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static bool ImporterExportIAT(ulong StorePlace, ulong FileMapVA, __IntPtr hFileMap)
+        public static bool ImporterExportIAT(global::System.UIntPtr StorePlace, global::System.UIntPtr FileMapVA, __IntPtr hFileMap)
         {
             var __ret = __Internal.ImporterExportIAT(StorePlace, FileMapVA, hFileMap);
             return __ret;
@@ -8138,115 +8192,115 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static ulong ImporterFindAPIWriteLocation(string szAPIName)
+        public static global::System.UIntPtr ImporterFindAPIWriteLocation(string szAPIName)
         {
             var __ret = __Internal.ImporterFindAPIWriteLocation(szAPIName);
             return __ret;
         }
 
-        public static ulong ImporterFindOrdinalAPIWriteLocation(ulong OrdinalNumber)
+        public static global::System.UIntPtr ImporterFindOrdinalAPIWriteLocation(global::System.UIntPtr OrdinalNumber)
         {
             var __ret = __Internal.ImporterFindOrdinalAPIWriteLocation(OrdinalNumber);
             return __ret;
         }
 
-        public static ulong ImporterFindAPIByWriteLocation(ulong APIWriteLocation)
+        public static global::System.UIntPtr ImporterFindAPIByWriteLocation(global::System.UIntPtr APIWriteLocation)
         {
             var __ret = __Internal.ImporterFindAPIByWriteLocation(APIWriteLocation);
             return __ret;
         }
 
-        public static ulong ImporterFindDLLByWriteLocation(ulong APIWriteLocation)
+        public static global::System.UIntPtr ImporterFindDLLByWriteLocation(global::System.UIntPtr APIWriteLocation)
         {
             var __ret = __Internal.ImporterFindDLLByWriteLocation(APIWriteLocation);
             return __ret;
         }
 
-        public static __IntPtr ImporterGetDLLName(ulong APIAddress)
+        public static __IntPtr ImporterGetDLLName(global::System.UIntPtr APIAddress)
         {
             var __ret = __Internal.ImporterGetDLLName(APIAddress);
             return __ret;
         }
 
-        public static __IntPtr ImporterGetDLLNameW(ulong APIAddress)
+        public static __IntPtr ImporterGetDLLNameW(global::System.UIntPtr APIAddress)
         {
             var __ret = __Internal.ImporterGetDLLNameW(APIAddress);
             return __ret;
         }
 
-        public static __IntPtr ImporterGetAPIName(ulong APIAddress)
+        public static __IntPtr ImporterGetAPIName(global::System.UIntPtr APIAddress)
         {
             var __ret = __Internal.ImporterGetAPIName(APIAddress);
             return __ret;
         }
 
-        public static ulong ImporterGetAPIOrdinalNumber(ulong APIAddress)
+        public static global::System.UIntPtr ImporterGetAPIOrdinalNumber(global::System.UIntPtr APIAddress)
         {
             var __ret = __Internal.ImporterGetAPIOrdinalNumber(APIAddress);
             return __ret;
         }
 
-        public static __IntPtr ImporterGetAPINameEx(ulong APIAddress, ulong DLLBasesList)
+        public static __IntPtr ImporterGetAPINameEx(global::System.UIntPtr APIAddress, global::System.UIntPtr DLLBasesList)
         {
             var __ret = __Internal.ImporterGetAPINameEx(APIAddress, DLLBasesList);
             return __ret;
         }
 
-        public static ulong ImporterGetRemoteAPIAddress(__IntPtr hProcess, ulong APIAddress)
+        public static global::System.UIntPtr ImporterGetRemoteAPIAddress(__IntPtr hProcess, global::System.UIntPtr APIAddress)
         {
             var __ret = __Internal.ImporterGetRemoteAPIAddress(hProcess, APIAddress);
             return __ret;
         }
 
-        public static ulong ImporterGetRemoteAPIAddressEx(string szDLLName, string szAPIName)
+        public static global::System.UIntPtr ImporterGetRemoteAPIAddressEx(string szDLLName, string szAPIName)
         {
             var __ret = __Internal.ImporterGetRemoteAPIAddressEx(szDLLName, szAPIName);
             return __ret;
         }
 
-        public static ulong ImporterGetLocalAPIAddress(__IntPtr hProcess, ulong APIAddress)
+        public static global::System.UIntPtr ImporterGetLocalAPIAddress(__IntPtr hProcess, global::System.UIntPtr APIAddress)
         {
             var __ret = __Internal.ImporterGetLocalAPIAddress(hProcess, APIAddress);
             return __ret;
         }
 
-        public static __IntPtr ImporterGetDLLNameFromDebugee(__IntPtr hProcess, ulong APIAddress)
+        public static __IntPtr ImporterGetDLLNameFromDebugee(__IntPtr hProcess, global::System.UIntPtr APIAddress)
         {
             var __ret = __Internal.ImporterGetDLLNameFromDebugee(hProcess, APIAddress);
             return __ret;
         }
 
-        public static __IntPtr ImporterGetDLLNameFromDebugeeW(__IntPtr hProcess, ulong APIAddress)
+        public static __IntPtr ImporterGetDLLNameFromDebugeeW(__IntPtr hProcess, global::System.UIntPtr APIAddress)
         {
             var __ret = __Internal.ImporterGetDLLNameFromDebugeeW(hProcess, APIAddress);
             return __ret;
         }
 
-        public static __IntPtr ImporterGetAPINameFromDebugee(__IntPtr hProcess, ulong APIAddress)
+        public static __IntPtr ImporterGetAPINameFromDebugee(__IntPtr hProcess, global::System.UIntPtr APIAddress)
         {
             var __ret = __Internal.ImporterGetAPINameFromDebugee(hProcess, APIAddress);
             return __ret;
         }
 
-        public static ulong ImporterGetAPIOrdinalNumberFromDebugee(__IntPtr hProcess, ulong APIAddress)
+        public static global::System.UIntPtr ImporterGetAPIOrdinalNumberFromDebugee(__IntPtr hProcess, global::System.UIntPtr APIAddress)
         {
             var __ret = __Internal.ImporterGetAPIOrdinalNumberFromDebugee(hProcess, APIAddress);
             return __ret;
         }
 
-        public static int ImporterGetDLLIndexEx(ulong APIAddress, ulong DLLBasesList)
+        public static int ImporterGetDLLIndexEx(global::System.UIntPtr APIAddress, global::System.UIntPtr DLLBasesList)
         {
             var __ret = __Internal.ImporterGetDLLIndexEx(APIAddress, DLLBasesList);
             return __ret;
         }
 
-        public static int ImporterGetDLLIndex(__IntPtr hProcess, ulong APIAddress, ulong DLLBasesList)
+        public static int ImporterGetDLLIndex(__IntPtr hProcess, global::System.UIntPtr APIAddress, global::System.UIntPtr DLLBasesList)
         {
             var __ret = __Internal.ImporterGetDLLIndex(hProcess, APIAddress, DLLBasesList);
             return __ret;
         }
 
-        public static ulong ImporterGetRemoteDLLBaseEx(__IntPtr hProcess, string szModuleName)
+        public static global::System.UIntPtr ImporterGetRemoteDLLBaseEx(__IntPtr hProcess, string szModuleName)
         {
             var __ret = __Internal.ImporterGetRemoteDLLBaseEx(hProcess, szModuleName);
             return __ret;
@@ -8258,43 +8312,43 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static bool ImporterIsForwardedAPI(__IntPtr hProcess, ulong APIAddress)
+        public static bool ImporterIsForwardedAPI(__IntPtr hProcess, global::System.UIntPtr APIAddress)
         {
             var __ret = __Internal.ImporterIsForwardedAPI(hProcess, APIAddress);
             return __ret;
         }
 
-        public static __IntPtr ImporterGetForwardedAPIName(__IntPtr hProcess, ulong APIAddress)
+        public static __IntPtr ImporterGetForwardedAPIName(__IntPtr hProcess, global::System.UIntPtr APIAddress)
         {
             var __ret = __Internal.ImporterGetForwardedAPIName(hProcess, APIAddress);
             return __ret;
         }
 
-        public static __IntPtr ImporterGetForwardedDLLName(__IntPtr hProcess, ulong APIAddress)
+        public static __IntPtr ImporterGetForwardedDLLName(__IntPtr hProcess, global::System.UIntPtr APIAddress)
         {
             var __ret = __Internal.ImporterGetForwardedDLLName(hProcess, APIAddress);
             return __ret;
         }
 
-        public static int ImporterGetForwardedDLLIndex(__IntPtr hProcess, ulong APIAddress, ulong DLLBasesList)
+        public static int ImporterGetForwardedDLLIndex(__IntPtr hProcess, global::System.UIntPtr APIAddress, global::System.UIntPtr DLLBasesList)
         {
             var __ret = __Internal.ImporterGetForwardedDLLIndex(hProcess, APIAddress, DLLBasesList);
             return __ret;
         }
 
-        public static ulong ImporterGetForwardedAPIOrdinalNumber(__IntPtr hProcess, ulong APIAddress)
+        public static global::System.UIntPtr ImporterGetForwardedAPIOrdinalNumber(__IntPtr hProcess, global::System.UIntPtr APIAddress)
         {
             var __ret = __Internal.ImporterGetForwardedAPIOrdinalNumber(hProcess, APIAddress);
             return __ret;
         }
 
-        public static ulong ImporterGetNearestAPIAddress(__IntPtr hProcess, ulong APIAddress)
+        public static global::System.UIntPtr ImporterGetNearestAPIAddress(__IntPtr hProcess, global::System.UIntPtr APIAddress)
         {
             var __ret = __Internal.ImporterGetNearestAPIAddress(hProcess, APIAddress);
             return __ret;
         }
 
-        public static __IntPtr ImporterGetNearestAPIName(__IntPtr hProcess, ulong APIAddress)
+        public static __IntPtr ImporterGetNearestAPIName(__IntPtr hProcess, global::System.UIntPtr APIAddress)
         {
             var __ret = __Internal.ImporterGetNearestAPIName(hProcess, APIAddress);
             return __ret;
@@ -8336,17 +8390,17 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static void ImporterAutoSearchIAT(uint ProcessId, string szFileName, ulong SearchStart, __IntPtr pIATStart, __IntPtr pIATSize)
+        public static void ImporterAutoSearchIAT(uint ProcessId, string szFileName, global::System.UIntPtr SearchStart, __IntPtr pIATStart, __IntPtr pIATSize)
         {
             __Internal.ImporterAutoSearchIAT(ProcessId, szFileName, SearchStart, pIATStart, pIATSize);
         }
 
-        public static void ImporterAutoSearchIATW(uint ProcessIds, string szFileName, ulong SearchStart, __IntPtr pIATStart, __IntPtr pIATSize)
+        public static void ImporterAutoSearchIATW(uint ProcessIds, string szFileName, global::System.UIntPtr SearchStart, __IntPtr pIATStart, __IntPtr pIATSize)
         {
             __Internal.ImporterAutoSearchIATW(ProcessIds, szFileName, SearchStart, pIATStart, pIATSize);
         }
 
-        public static void ImporterAutoSearchIATEx(uint ProcessId, ulong ImageBase, ulong SearchStart, __IntPtr pIATStart, __IntPtr pIATSize)
+        public static void ImporterAutoSearchIATEx(uint ProcessId, global::System.UIntPtr ImageBase, global::System.UIntPtr SearchStart, __IntPtr pIATStart, __IntPtr pIATSize)
         {
             __Internal.ImporterAutoSearchIATEx(ProcessId, ImageBase, SearchStart, pIATStart, pIATSize);
         }
@@ -8356,31 +8410,31 @@ namespace TitanEngine.NET
             __Internal.ImporterEnumAddedData(EnumCallBack);
         }
 
-        public static int ImporterAutoFixIATEx(uint ProcessId, string szDumpedFile, string szSectionName, bool DumpRunningProcess, bool RealignFile, ulong EntryPointAddress, ulong ImageBase, ulong SearchStart, bool TryAutoFix, bool FixEliminations, __IntPtr UnknownPointerFixCallback)
+        public static int ImporterAutoFixIATEx(uint ProcessId, string szDumpedFile, string szSectionName, bool DumpRunningProcess, bool RealignFile, global::System.UIntPtr EntryPointAddress, global::System.UIntPtr ImageBase, global::System.UIntPtr SearchStart, bool TryAutoFix, bool FixEliminations, __IntPtr UnknownPointerFixCallback)
         {
             var __ret = __Internal.ImporterAutoFixIATEx(ProcessId, szDumpedFile, szSectionName, DumpRunningProcess, RealignFile, EntryPointAddress, ImageBase, SearchStart, TryAutoFix, FixEliminations, UnknownPointerFixCallback);
             return __ret;
         }
 
-        public static int ImporterAutoFixIATExW(uint ProcessId, string szDumpedFile, string szSectionName, bool DumpRunningProcess, bool RealignFile, ulong EntryPointAddress, ulong ImageBase, ulong SearchStart, bool TryAutoFix, bool FixEliminations, __IntPtr UnknownPointerFixCallback)
+        public static int ImporterAutoFixIATExW(uint ProcessId, string szDumpedFile, string szSectionName, bool DumpRunningProcess, bool RealignFile, global::System.UIntPtr EntryPointAddress, global::System.UIntPtr ImageBase, global::System.UIntPtr SearchStart, bool TryAutoFix, bool FixEliminations, __IntPtr UnknownPointerFixCallback)
         {
             var __ret = __Internal.ImporterAutoFixIATExW(ProcessId, szDumpedFile, szSectionName, DumpRunningProcess, RealignFile, EntryPointAddress, ImageBase, SearchStart, TryAutoFix, FixEliminations, UnknownPointerFixCallback);
             return __ret;
         }
 
-        public static int ImporterAutoFixIAT(uint ProcessId, string szDumpedFile, ulong SearchStart)
+        public static int ImporterAutoFixIAT(uint ProcessId, string szDumpedFile, global::System.UIntPtr SearchStart)
         {
             var __ret = __Internal.ImporterAutoFixIAT(ProcessId, szDumpedFile, SearchStart);
             return __ret;
         }
 
-        public static int ImporterAutoFixIATW(uint ProcessId, string szDumpedFile, ulong SearchStart)
+        public static int ImporterAutoFixIATW(uint ProcessId, string szDumpedFile, global::System.UIntPtr SearchStart)
         {
             var __ret = __Internal.ImporterAutoFixIATW(ProcessId, szDumpedFile, SearchStart);
             return __ret;
         }
 
-        public static bool ImporterDeleteAPI(ulong apiAddr)
+        public static bool ImporterDeleteAPI(global::System.UIntPtr apiAddr)
         {
             var __ret = __Internal.ImporterDeleteAPI(apiAddr);
             return __ret;
@@ -8422,7 +8476,7 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static bool HooksInsertNewIATRedirectionEx(ulong FileMapVA, ulong LoadedModuleBase, string szHookFunction, __IntPtr RedirectTo)
+        public static bool HooksInsertNewIATRedirectionEx(global::System.UIntPtr FileMapVA, global::System.UIntPtr LoadedModuleBase, string szHookFunction, __IntPtr RedirectTo)
         {
             var __ret = __Internal.HooksInsertNewIATRedirectionEx(FileMapVA, LoadedModuleBase, szHookFunction, RedirectTo);
             return __ret;
@@ -8485,31 +8539,31 @@ namespace TitanEngine.NET
             __Internal.TracerInit();
         }
 
-        public static ulong TracerLevel1(__IntPtr hProcess, ulong AddressToTrace)
+        public static global::System.UIntPtr TracerLevel1(__IntPtr hProcess, global::System.UIntPtr AddressToTrace)
         {
             var __ret = __Internal.TracerLevel1(hProcess, AddressToTrace);
             return __ret;
         }
 
-        public static ulong HashTracerLevel1(__IntPtr hProcess, ulong AddressToTrace, uint InputNumberOfInstructions)
+        public static global::System.UIntPtr HashTracerLevel1(__IntPtr hProcess, global::System.UIntPtr AddressToTrace, uint InputNumberOfInstructions)
         {
             var __ret = __Internal.HashTracerLevel1(hProcess, AddressToTrace, InputNumberOfInstructions);
             return __ret;
         }
 
-        public static int TracerDetectRedirection(__IntPtr hProcess, ulong AddressToTrace)
+        public static int TracerDetectRedirection(__IntPtr hProcess, global::System.UIntPtr AddressToTrace)
         {
             var __ret = __Internal.TracerDetectRedirection(hProcess, AddressToTrace);
             return __ret;
         }
 
-        public static ulong TracerFixKnownRedirection(__IntPtr hProcess, ulong AddressToTrace, uint RedirectionId)
+        public static global::System.UIntPtr TracerFixKnownRedirection(__IntPtr hProcess, global::System.UIntPtr AddressToTrace, uint RedirectionId)
         {
             var __ret = __Internal.TracerFixKnownRedirection(hProcess, AddressToTrace, RedirectionId);
             return __ret;
         }
 
-        public static int TracerFixRedirectionViaImpRecPlugin(__IntPtr hProcess, string szPluginName, ulong AddressToTrace)
+        public static int TracerFixRedirectionViaImpRecPlugin(__IntPtr hProcess, string szPluginName, global::System.UIntPtr AddressToTrace)
         {
             var __ret = __Internal.TracerFixRedirectionViaImpRecPlugin(hProcess, szPluginName, AddressToTrace);
             return __ret;
@@ -8520,12 +8574,12 @@ namespace TitanEngine.NET
             __Internal.ExporterCleanup();
         }
 
-        public static void ExporterSetImageBase(ulong ImageBase)
+        public static void ExporterSetImageBase(global::System.UIntPtr ImageBase)
         {
             __Internal.ExporterSetImageBase(ImageBase);
         }
 
-        public static void ExporterInit(uint MemorySize, ulong ImageBase, uint ExportOrdinalBase, string szExportModuleName)
+        public static void ExporterInit(uint MemorySize, global::System.UIntPtr ImageBase, uint ExportOrdinalBase, string szExportModuleName)
         {
             __Internal.ExporterInit(MemorySize, ImageBase, ExportOrdinalBase, szExportModuleName);
         }
@@ -8554,7 +8608,7 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static bool ExporterBuildExportTable(ulong StorePlace, ulong FileMapVA)
+        public static bool ExporterBuildExportTable(global::System.UIntPtr StorePlace, global::System.UIntPtr FileMapVA)
         {
             var __ret = __Internal.ExporterBuildExportTable(StorePlace, FileMapVA);
             return __ret;
@@ -8739,7 +8793,7 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static bool TLSBuildNewTable(ulong FileMapVA, ulong StorePlace, ulong StorePlaceRVA, __IntPtr ArrayOfCallBacks, uint NumberOfCallBacks)
+        public static bool TLSBuildNewTable(global::System.UIntPtr FileMapVA, global::System.UIntPtr StorePlace, global::System.UIntPtr StorePlaceRVA, __IntPtr ArrayOfCallBacks, uint NumberOfCallBacks)
         {
             var __ret = __Internal.TLSBuildNewTable(FileMapVA, StorePlace, StorePlaceRVA, ArrayOfCallBacks, NumberOfCallBacks);
             return __ret;
@@ -8799,7 +8853,7 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static ulong HandlerGetHandleDetails(__IntPtr hProcess, uint ProcessId, __IntPtr hHandle, uint InformationReturn)
+        public static global::System.UIntPtr HandlerGetHandleDetails(__IntPtr hProcess, uint ProcessId, __IntPtr hHandle, uint InformationReturn)
         {
             var __ret = __Internal.HandlerGetHandleDetails(hProcess, ProcessId, hHandle, InformationReturn);
             return __ret;
@@ -8853,13 +8907,13 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static ulong HandlerGetOpenMutexHandle(__IntPtr hProcess, uint ProcessId, string szMutexString)
+        public static global::System.UIntPtr HandlerGetOpenMutexHandle(__IntPtr hProcess, uint ProcessId, string szMutexString)
         {
             var __ret = __Internal.HandlerGetOpenMutexHandle(hProcess, ProcessId, szMutexString);
             return __ret;
         }
 
-        public static ulong HandlerGetOpenMutexHandleW(__IntPtr hProcess, uint ProcessId, string szMutexString)
+        public static global::System.UIntPtr HandlerGetOpenMutexHandleW(__IntPtr hProcess, uint ProcessId, string szMutexString)
         {
             var __ret = __Internal.HandlerGetOpenMutexHandleW(hProcess, ProcessId, szMutexString);
             return __ret;
@@ -8895,41 +8949,33 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static bool StaticFileLoad(string szFileName, uint DesiredAccess, bool SimulateLoad, __IntPtr* FileHandle, ref uint LoadedSize, __IntPtr* FileMap, ref ulong FileMapVA)
+        public static bool StaticFileLoad(string szFileName, uint DesiredAccess, bool SimulateLoad, __IntPtr* FileHandle, ref uint LoadedSize, __IntPtr* FileMap, ref global::System.UIntPtr* FileMapVA)
         {
             fixed (uint* __LoadedSize4 = &LoadedSize)
             {
                 var __arg4 = __LoadedSize4;
-                fixed (ulong* __FileMapVA6 = &FileMapVA)
-                {
-                    var __arg6 = __FileMapVA6;
-                    var __ret = __Internal.StaticFileLoad(szFileName, DesiredAccess, SimulateLoad, FileHandle, __arg4, FileMap, __arg6);
-                    return __ret;
-                }
+                var __ret = __Internal.StaticFileLoad(szFileName, DesiredAccess, SimulateLoad, FileHandle, __arg4, FileMap, FileMapVA);
+                return __ret;
             }
         }
 
-        public static bool StaticFileLoadW(string szFileName, uint DesiredAccess, bool SimulateLoad, __IntPtr* FileHandle, ref uint LoadedSize, __IntPtr* FileMap, ref ulong FileMapVA)
+        public static bool StaticFileLoadW(string szFileName, uint DesiredAccess, bool SimulateLoad, __IntPtr* FileHandle, ref uint LoadedSize, __IntPtr* FileMap, ref global::System.UIntPtr* FileMapVA)
         {
             fixed (uint* __LoadedSize4 = &LoadedSize)
             {
                 var __arg4 = __LoadedSize4;
-                fixed (ulong* __FileMapVA6 = &FileMapVA)
-                {
-                    var __arg6 = __FileMapVA6;
-                    var __ret = __Internal.StaticFileLoadW(szFileName, DesiredAccess, SimulateLoad, FileHandle, __arg4, FileMap, __arg6);
-                    return __ret;
-                }
+                var __ret = __Internal.StaticFileLoadW(szFileName, DesiredAccess, SimulateLoad, FileHandle, __arg4, FileMap, FileMapVA);
+                return __ret;
             }
         }
 
-        public static bool StaticFileUnload(string szFileName, bool CommitChanges, __IntPtr FileHandle, uint LoadedSize, __IntPtr FileMap, ulong FileMapVA)
+        public static bool StaticFileUnload(string szFileName, bool CommitChanges, __IntPtr FileHandle, uint LoadedSize, __IntPtr FileMap, global::System.UIntPtr FileMapVA)
         {
             var __ret = __Internal.StaticFileUnload(szFileName, CommitChanges, FileHandle, LoadedSize, FileMap, FileMapVA);
             return __ret;
         }
 
-        public static bool StaticFileUnloadW(string szFileName, bool CommitChanges, __IntPtr FileHandle, uint LoadedSize, __IntPtr FileMap, ulong FileMapVA)
+        public static bool StaticFileUnloadW(string szFileName, bool CommitChanges, __IntPtr FileHandle, uint LoadedSize, __IntPtr FileMap, global::System.UIntPtr FileMapVA)
         {
             var __ret = __Internal.StaticFileUnloadW(szFileName, CommitChanges, FileHandle, LoadedSize, FileMap, FileMapVA);
             return __ret;
@@ -8978,7 +9024,7 @@ namespace TitanEngine.NET
             __Internal.StaticFileClose(FileHandle);
         }
 
-        public static void StaticMemoryDecrypt(__IntPtr MemoryStart, uint MemorySize, uint DecryptionType, uint DecryptionKeySize, ulong DecryptionKey)
+        public static void StaticMemoryDecrypt(__IntPtr MemoryStart, uint MemorySize, uint DecryptionType, uint DecryptionKeySize, global::System.UIntPtr DecryptionKey)
         {
             __Internal.StaticMemoryDecrypt(MemoryStart, MemorySize, DecryptionType, DecryptionKeySize, DecryptionKey);
         }
@@ -8993,7 +9039,7 @@ namespace TitanEngine.NET
             __Internal.StaticMemoryDecryptSpecial(MemoryStart, MemorySize, DecryptionKeySize, SpecDecryptionType, DecryptionCallBack);
         }
 
-        public static void StaticSectionDecrypt(ulong FileMapVA, uint SectionNumber, bool SimulateLoad, uint DecryptionType, uint DecryptionKeySize, ulong DecryptionKey)
+        public static void StaticSectionDecrypt(global::System.UIntPtr FileMapVA, uint SectionNumber, bool SimulateLoad, uint DecryptionType, uint DecryptionKeySize, global::System.UIntPtr DecryptionKey)
         {
             __Internal.StaticSectionDecrypt(FileMapVA, SectionNumber, SimulateLoad, DecryptionType, DecryptionKeySize, DecryptionKey);
         }
@@ -9004,13 +9050,13 @@ namespace TitanEngine.NET
             return __ret;
         }
 
-        public static bool StaticRawMemoryCopy(__IntPtr hFile, ulong FileMapVA, ulong VitualAddressToCopy, uint Size, bool AddressIsRVA, string szDumpFileName)
+        public static bool StaticRawMemoryCopy(__IntPtr hFile, global::System.UIntPtr FileMapVA, global::System.UIntPtr VitualAddressToCopy, uint Size, bool AddressIsRVA, string szDumpFileName)
         {
             var __ret = __Internal.StaticRawMemoryCopy(hFile, FileMapVA, VitualAddressToCopy, Size, AddressIsRVA, szDumpFileName);
             return __ret;
         }
 
-        public static bool StaticRawMemoryCopyW(__IntPtr hFile, ulong FileMapVA, ulong VitualAddressToCopy, uint Size, bool AddressIsRVA, string szDumpFileName)
+        public static bool StaticRawMemoryCopyW(__IntPtr hFile, global::System.UIntPtr FileMapVA, global::System.UIntPtr VitualAddressToCopy, uint Size, bool AddressIsRVA, string szDumpFileName)
         {
             var __ret = __Internal.StaticRawMemoryCopyW(hFile, FileMapVA, VitualAddressToCopy, Size, AddressIsRVA, szDumpFileName);
             return __ret;
@@ -9068,13 +9114,13 @@ namespace TitanEngine.NET
             __Internal.EngineUnpackerInitializeW(szFileName, szUnpackedFileName, DoLogData, DoRealignFile, DoMoveOverlay, EntryCallBack);
         }
 
-        public static bool EngineUnpackerSetBreakCondition(__IntPtr SearchStart, uint SearchSize, __IntPtr SearchPattern, uint PatternSize, uint PatternDelta, ulong BreakType, bool SingleBreak, uint Parameter1, uint Parameter2)
+        public static bool EngineUnpackerSetBreakCondition(__IntPtr SearchStart, uint SearchSize, __IntPtr SearchPattern, uint PatternSize, uint PatternDelta, global::System.UIntPtr BreakType, bool SingleBreak, uint Parameter1, uint Parameter2)
         {
             var __ret = __Internal.EngineUnpackerSetBreakCondition(SearchStart, SearchSize, SearchPattern, PatternSize, PatternDelta, BreakType, SingleBreak, Parameter1, Parameter2);
             return __ret;
         }
 
-        public static void EngineUnpackerSetEntryPointAddress(ulong UnpackedEntryPointAddress)
+        public static void EngineUnpackerSetEntryPointAddress(global::System.UIntPtr UnpackedEntryPointAddress)
         {
             __Internal.EngineUnpackerSetEntryPointAddress(UnpackedEntryPointAddress);
         }
@@ -9124,7 +9170,7 @@ namespace TitanEngine.NET
             __Internal.EngineAddUnpackerWindowLogMessage(szLogMessage);
         }
 
-        public static bool EngineCheckStructAlignment(uint StructureType, ulong StructureSize)
+        public static bool EngineCheckStructAlignment(uint StructureType, global::System.UIntPtr StructureSize)
         {
             var __ret = __Internal.EngineCheckStructAlignment(StructureType, StructureSize);
             return __ret;
@@ -9185,3 +9231,4 @@ namespace TitanEngine.NET
         }
     }
 }
+
