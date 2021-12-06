@@ -2683,6 +2683,8 @@ namespace TitanEngine.NET
 
     public unsafe partial class HOOK_ENTRY : IDisposable
     {
+        public const int TEE_MAXIMUM_HOOK_SIZE = 14;
+        public const int TEE_MAXIMUM_HOOK_RELOCS = 7;
 #if WIN64
         [StructLayout(LayoutKind.Sequential, Size = 104, Pack = 1)]
 #else
@@ -2695,14 +2697,14 @@ namespace TitanEngine.NET
             internal uint HookSize;
             internal __IntPtr HookAddress;
             internal __IntPtr RedirectionAddress;
-            internal fixed byte HookBytes[14];
-            internal fixed byte OriginalBytes[14];
+            internal fixed byte HookBytes[TEE_MAXIMUM_HOOK_SIZE];
+            internal fixed byte OriginalBytes[TEE_MAXIMUM_HOOK_SIZE];
             internal __IntPtr IATHookModuleBase;
             internal uint IATHookNameHash;
             internal byte HookIsEnabled;
             internal byte HookIsRemote;
             internal __IntPtr PatchedEntry;
-            internal fixed uint RelocationInfo[7];
+            internal fixed uint RelocationInfo[TEE_MAXIMUM_HOOK_RELOCS];
             internal int RelocationCount;
         }
 
